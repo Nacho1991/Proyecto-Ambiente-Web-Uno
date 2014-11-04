@@ -11,15 +11,13 @@ class Dashboard extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('dashboard_usuario');
+        $this->load->view('plantillas/header');
+        $this->load->view('dashboardusuario');
     }
 
-    public function usuarioeditar() {
-        $this->load->view('usuarios/header');
-        $this->load->view('usuarios/usuario_editar');
-    }
-    public function usuariomodificar(){
-        $this->load->view('usuarios/header');
+
+    public function usuariomodificar() {
+        $this->load->view('plantillas/header');
         $this->load->view('usuarios/usuariomodificar');
     }
 

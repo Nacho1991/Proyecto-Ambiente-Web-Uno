@@ -6,6 +6,7 @@ if (!defined('BASEPATH'))
 class Login extends CI_Controller {
 
     public function index() {
+        $this->load->view('plantillas/header');
         $this->load->view('login_usuario');
     }
 
