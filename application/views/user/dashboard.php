@@ -1,57 +1,46 @@
-<!DOCTYPE HTML>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Universidad Técnica Nacional</title>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="/var/www/html/ProyectoWebInaigter/public/CSS/bootstrap.css">
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="/var/www/html/ProyectoWebInaigter/public/CSS/bootstrap.min.css">
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
-    </head>
-    <form action="<?php echo base_url('user/insert') ?>" method="post" accept-charset="utf-8">
-        <fieldset>
-            <legend>Registrar usuario</legend>
-            <label for="cedula">Cédula:</label>
-            <input type="text" name="cedula" placeholder="Cédula"> <br/>
-            <label for="role">Rol administrativo:</label>
-            <input type="text" name="role" placeholder="Role"> <br/>
-            <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" placeholder="Nombre y apellidos"> <br/>
-            <label for="username">Nombre usuario:</label>
-            <input type="text" name="nombreusuario" placeholder="Nombre de usuario"> <br/>
-            <label for="contrasenna">Contraseña:</label>
-            <input type="password" name="contrasenna" placeholder="Contraseña"> <br/>
-            <input type="submit" value="Registrar">
-        </fieldset>
-    </form>	
-    <form action="<?php echo base_url('user/delete') ?>" method="post" accept-charset="utf-8">
-        <fieldset>
-            <legend>Eliminar usuario</legend>
-            <label for="cedula">Eliminar usuario:</label>
-            <input type="text" name="cedula" size="40" placeholder="Cédula del usuario a eliminar">
-            <input type="submit" value="Eliminar">
-        </fieldset>
-    </form>
-    <form action="<?php echo base_url('user/actualizar') ?>" method="post" accept-charset="utf-8">
-        <fieldset>
-            <legend>Actualizar datos</legend>
-            <label for="cedula">Cédula:</label>
-            <input type="text" name="cedula" placeholder="Cédula"> <br/>
-            <label for="role">Rol administrativo:</label>
-            <input type="text" name="role" placeholder="Role"> <br/>
-            <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" placeholder="Nombre y apellidos"> <br/>
-            <label for="nombreusuario">Nombre usuario:</label>
-            <input type="text" name="nombreusuario" placeholder="Nombre de usuario"> <br/>
-            <label for="contrasenna">Contraseña:</label>
-            <input type="password" name="contrasenna" placeholder="Contraseña"> <br/>
-            <input type="submit" name="" value="Registrar">
-        </fieldset>
-    </form>	
-</body>
+    <body>
+        <div class="container">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-default navbar-left">
+                    <li>
+                        <div class="flip">
+<!--                            <img  src="<?php echo base_url(); ?>Images/Logo.png" class="imagen flip-1" alt="Imagen responsive">
+                            <div class="flip-2"><img  src="<?php echo base_url(); ?>Images/Logo.png" class="imagen flip-1" alt="Imagen responsive"> </div>-->
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-default navbar-right">
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Opciones <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Configuración</a></li>
+                            <li><a href="#">Perfil</a></li>
+                            <li class="divider"></li>
+                            <li><a href="Login.html" target="_self">Cerrar sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div id="content">
+                <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
+                    <li class="active"><a href="#dashboard" data-toggle="tab" data-placement="top" class="tip-top" data-original-title="Menú principal">Dashboard</a></li>
+                    <li><a href="#carreras" data-toggle="tab" data-placement="top" class="tip-top" data-original-title="Gestiona la carreras registradas">Carreras</a></li>
+                    <li><a href="#estudiantes" data-toggle="tab" data-placement="top" class="tip-top" data-original-title="Gestiona los registros de los estudiantes">Estudiantes</a></li>
+                    <li><a href="<?php echo base_url('user/obtenerUsers') ?>" data-toggle="tab" data-placement="top" class="tip-top" data-original-title="Gestiona los usuarios registrados">Usuarios</a></li>
+                    <li><a href="#acercade" data-toggle="tab" data-placement="top" class="tip-top" data-original-title="Brinda información acerca de la emnpresa">Acerca de..</a></li>
+                </ul>
+                <div id="my-tab-content" class="tab-content">
+                    <div class="tab-pane active" id="dashboard">
+                        <center>
+                            <h3 class="page-header">Dashboard</h3>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
 </html>

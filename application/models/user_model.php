@@ -72,7 +72,11 @@ class User_model extends CI_Model {
 
     function get_all() {
         $query = $this->db->get('usuarios');
-        return $query->result();
+        if ($query->num_rows() > 0) {
+            return $query;
+        } else {
+            return false;
+        }
     }
 
 }

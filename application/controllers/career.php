@@ -14,7 +14,16 @@ class Career extends CI_Controller {
     public function index() {
         $carreras = $this->career->get_all();
         $data = array('carreras' => $carreras);
-        $this->load->view('career/index', $data);
+        $this->load->view('careers/careers_view', $data);
+    }
+
+    public function obtenerCarreras() {
+        $careers = $this->career->get_all();
+        $data = array(
+            'carreras' => $careers
+        );
+        $this->load->view('plantillas/header');
+        $this->load->view('careers/careers_view', $data);
     }
 
     public function actualizar() {
@@ -36,10 +45,11 @@ class Career extends CI_Controller {
 
     public function insert() {
         $codigo = $this->input->post('codcarrera');
-        $nombre = $this->input->post('nombre');
-        $user = $this->user->insert_user($nombre, $codigo);
+        $nombre = $this->input->post('nombreCarrera');
+        $user = $this->career->insert_career($codigo,$nombre);
         if (!$user) {
             echo 'error';
         }
     }
+
 }

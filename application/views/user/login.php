@@ -29,18 +29,5 @@
             </div>  
         </div>
     </div>
-
-    <!--        <div id="container">
-                <h1>Bienvenido a la aplicación</h1>
-                <div id="body">
-                    <form action="<?php echo base_url('user/authenticate') ?>" method="post" accept-charset="utf-8">
-                        <label for="user_name">Username</label>
-                        <input  type="text" name="username" value="" placeholder=""> <br/>
-                        <label for="password">Password</label>
-                        <input type="password" name="password" value="" placeholder=""> <br/>
-                        <input class="btn btn-default" type="submit" name="" value="Login">
-                    </form>	
-                </div>
-            </div>-->
 </body>
 </html>

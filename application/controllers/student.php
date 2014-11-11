@@ -12,11 +12,20 @@ class Student extends CI_Controller {
     }
 
     public function index() {
-        $users = $this->student->get_all();
-        $data = array('estudiante' => $users);
-        $this->load->view('student/index', $data);
+        $students = $this->student->get_all();
+        $data = array(
+            'estudiantes' => $students
+                );
+        $this->load->view('student/students_view', $data);
     }
-
+public function obtenerStudents() {
+        $students = $this->student->get_all();
+        $data = array(
+            'estudiantes' => $students
+                );
+        $this->load->view('plantillas/header');
+        $this->load->view('students/students_view', $data);
+    }
     public function actualizar() {
         $cedula = $this->input->post('cedula');
         $nombre = $this->input->post('nombre');

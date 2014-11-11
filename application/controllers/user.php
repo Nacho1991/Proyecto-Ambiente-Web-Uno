@@ -22,15 +22,26 @@ class User extends CI_Controller {
         $this->load->view('user/login');
     }
 
+    public function obtenerUsers() {
+        //Obtiene todos los usuarios registrados
+        $data = array(
+            'usuarios' => $this->user->get_all()
+        );
+        $this->load->view('plantillas/header');
+        $this->load->view('/user/users_view', $data);
+    }
+
     public function authenticate() {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
         // llamamos al modelo User y el método de authenticate
         $user = $this->user->authenticate($username, $password);
         if ($user) {
-            redirect("/user/dashboard?uid=$username");
+            $this->load->view('plantillas/header');
+            $this->load->view('/user/dashboard');
         } else {
-            redirect("/user/login");
+            $this->load->view('plantillas/header');
+            $this->load->view('user/login');
         }
     }
 
