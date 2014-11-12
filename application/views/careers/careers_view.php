@@ -1,22 +1,4 @@
-<!DOCTYPE HTML>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Universidad Técnica Nacional</title>
-        <link rel="stylesheet" href="<?php echo base_url(); ?>CSS/bootstrap.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>CSS/bootstrap-theme.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>CSS/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>CSS/bootstrap.min.css">
 
-        <script src="<?php echo base_url(); ?>JS/jquery-1.8.3.min.js"></script>
-        <script src="<?php echo base_url(); ?>JS/bootstrap.min.js"></script>
-        <script src="<?php echo base_url(); ?>JS/bootstrap.js"></script>
-        <script src="<?php echo base_url(); ?>JS/npm.js"></script>
-        <script src="<?php echo base_url(); ?>JS/bootbox.min.js"></script>
-        <script src="<?php echo base_url(); ?>JS/bootbox.js"></script>
-    </head>
     <body>
         <div class="container">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -44,10 +26,11 @@
         <div class="container">
             <div id="content">
                 <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
-                    <li><a href="<?php echo base_url('user/authenticate') ?>" data-toggle="tab" data-placement="top" class="tip-top">Dashboard</a></li>
+                    <li><a href="<?php echo base_url('user/index') ?>" class="tip-top">Dashboard</a></li>
                     <li class="active"><a href="<?php echo base_url('career/obtenerCarreras') ?>" data-toggle="tab" data-placement="top" class="tip-top">Carreras</a></li>
-                    <li><a href="<?php echo base_url('student/obtenerStudents') ?>" data-toggle="tab" data-placement="top" class="tip-top">Estudiantes</a></li>
-                    <li><a href="<?php echo base_url('user/obtenerUsers') ?>" data-toggle="tab" data-placement="top" class="tip-top">Usuarios</a></li>
+                    <li>
+                        <a href="<?php echo base_url('student/obtenerStudents') ?>" class="tip-top">Estudiantes</a></li>
+                    <li><a href="<?php echo base_url('user/obtenerUsers') ?>" class="tip-top">Usuarios</a></li>
                     <li><a href="" data-toggle="tab" data-placement="top" class="tip-top">Acerca de..</a></li>
                 </ul>
                 <div id="my-tab-content" class="tab-content">
@@ -91,9 +74,9 @@
                                                                     <td>{$row->codigo_carrera}</td>
                                                                     <td>{$row->nombre}</td>
                                                                     <td> 
-                                                                        <input class=btn-danger type=submit value=Eliminar>
-                                                                        <input class=btn-success type=submit value=Modificar>
-                                                                        <input class=btn-info type=submit value=Ver detalles>
+                                                                        <input id=".$row->codigo_carrera." class=btn-danger type=submit value=Eliminar>
+                                                                        <input id=".$row->codigo_carrera." class=btn-success type=submit value=Modificar>
+                                                                        <input id=".$row->codigo_carrera." class=btn-info type=submit value=Detalles>
                                                                     </td>
                                                                 </tr>";
                                                             }

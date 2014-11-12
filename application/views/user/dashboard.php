@@ -26,11 +26,11 @@
         <div class="container">
             <div id="content">
                 <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
-                    <li class="active"><a href="#dashboard" data-toggle="tab" data-placement="top" class="tip-top" data-original-title="Menú principal">Dashboard</a></li>
-                    <li><a href="#carreras" data-toggle="tab" data-placement="top" class="tip-top" data-original-title="Gestiona la carreras registradas">Carreras</a></li>
-                    <li><a href="#estudiantes" data-toggle="tab" data-placement="top" class="tip-top" data-original-title="Gestiona los registros de los estudiantes">Estudiantes</a></li>
-                    <li><a href="<?php echo base_url('user/obtenerUsers') ?>" data-toggle="tab" data-placement="top" class="tip-top" data-original-title="Gestiona los usuarios registrados">Usuarios</a></li>
-                    <li><a href="#acercade" data-toggle="tab" data-placement="top" class="tip-top" data-original-title="Brinda información acerca de la emnpresa">Acerca de..</a></li>
+                    <li class="active"><a href="<?php echo base_url('user/index') ?>" class="tip-top">Dashboard</a></li>
+                    <li><a href="<?php echo base_url('career/obtenerCarreras') ?>" class="tip-top">Carreras</a></li>
+                    <li><a href="<?php echo base_url('student/obtenerStudents') ?>" class="tip-top">Estudiantes</a></li>
+                    <li><a href="<?php echo base_url('user/obtenerUsers') ?>"class="tip-top">Usuarios</a></li>
+                    <li><a href="#acercade" data-toggle="tab" data-placement="top" class="tip-top">Acerca de..</a></li>
                 </ul>
                 <div id="my-tab-content" class="tab-content">
                     <div class="tab-pane active" id="dashboard">

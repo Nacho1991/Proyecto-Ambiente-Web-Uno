@@ -14,7 +14,8 @@ class User extends CI_Controller {
     public function index() {
         $users = $this->user->get_all();
         $data = array('usuarios' => $users);
-        $this->load->view('user/index', $data);
+        $this->load->view('plantillas/header');
+        $this->load->view('user/dashboard', $data);
     }
 
     public function login() {
