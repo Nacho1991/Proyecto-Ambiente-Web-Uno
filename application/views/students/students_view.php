@@ -18,7 +18,7 @@
                             <li><a href="#">Configuración</a></li>
                             <li><a href="#">Perfil</a></li>
                             <li class="divider"></li>
-                            <li><a href="index.php" target="_self">Cerrar sesión</a></li>
+                            <li><a href="<?php echo base_url('user/authenticate') ?>" target="_self">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -31,7 +31,7 @@
                     <li><a href="<?php echo base_url('career/obtenerCarreras') ?>" class="tip-top">Carreras</a></li>
                     <li class="active"><a href="<?php echo base_url('student/obtenerStudents') ?>" class="tip-top">Estudiantes</a></li>
                     <li><a href="<?php echo base_url('user/obtenerUsers') ?>" class="tip-top">Usuarios</a></li>
-                    <li><a href="" data-toggle="tab" data-placement="top" class="tip-top">Acerca de..</a></li>
+                    
                 </ul>
                 <div id="my-tab-content" class="tab-content">
 
@@ -94,6 +94,9 @@
                                             </div> 
                                         </div> 
                                     </div>
+                                    
+                                    <!--Este modelo se encarga de registrar a los estudiantes en la base de datos!-->
+                                    
                                 </div>
                             </div>
                         </div>

@@ -20,14 +20,24 @@ class User_model extends CI_Model {
         }
     }
 
-    function update($cedula, $nombre, $nombreUsuario, $contrasenna, $role) {
+    function obtenerRoles() {
+        $query = $this->db->get('roles');
+        if ($query->num_rows() > 0) {
+            return $query;
+        } else {
+            return false;
+        }
+    }
+
+    function update($id, $cedula, $nombre, $nombreUsuario, $contrasenna, $role) {
         $data = array(
             'nombre' => $nombre,
+            'cedula' => $cedula,
             'nombre_usuario' => $nombreUsuario,
             'contrasenna' => $contrasenna,
             'role_fk' => $role
         );
-        $this->db->where('cedula', $cedula);
+        $this->db->where('id_usuarios', $id);
         $query = $this->db->update('usuarios', $data);
         if ($query->num_rows() > 0) {
             return $query->row();
@@ -36,9 +46,19 @@ class User_model extends CI_Model {
         }
     }
 
+    function detalles($pId) {
+        $this->db->where("id_usuarios", $pId);
+        $query = $this->db->get('usuarios');
+        if ($query->num_rows() > 0) {
+            return $query;
+        } else {
+            return null;
+        }
+    }
+
     function delete($cedula) {
         $data = array(
-            'cedula' => $cedula
+            'id_usuarios' => $cedula
         );
         $query = $this->db->delete('usuarios', $data);
         if ($query->num_rows() > 0) {

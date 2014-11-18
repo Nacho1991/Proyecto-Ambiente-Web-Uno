@@ -17,7 +17,7 @@
                             <li><a href="#">Configuración</a></li>
                             <li><a href="#">Perfil</a></li>
                             <li class="divider"></li>
-                            <li><a href="Login.html" target="_self">Cerrar sesión</a></li>
+                            <li><a href="<?php echo base_url('user/authenticate') ?>" target="_self">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -30,7 +30,7 @@
                     <li><a href="<?php echo base_url('career/obtenerCarreras') ?>" class="tip-top">Carreras</a></li>
                     <li><a href="<?php echo base_url('student/obtenerStudents') ?>" class="tip-top">Estudiantes</a></li>
                     <li><a href="<?php echo base_url('user/obtenerUsers') ?>"class="tip-top">Usuarios</a></li>
-                    <li><a href="#acercade" data-toggle="tab" data-placement="top" class="tip-top">Acerca de..</a></li>
+                    
                 </ul>
                 <div id="my-tab-content" class="tab-content">
                     <div class="tab-pane active" id="dashboard">

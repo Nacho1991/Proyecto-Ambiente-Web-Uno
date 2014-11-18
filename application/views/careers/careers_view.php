@@ -17,7 +17,7 @@
                             <li><a href="#">Configuración</a></li>
                             <li><a href="#">Perfil</a></li>
                             <li class="divider"></li>
-                            <li><a href="Login.html" target="_self">Cerrar sesión</a></li>
+                            <li><a href="<?php echo base_url('user/authenticate') ?>" target="_self">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -31,7 +31,7 @@
                     <li>
                         <a href="<?php echo base_url('student/obtenerStudents') ?>" class="tip-top">Estudiantes</a></li>
                     <li><a href="<?php echo base_url('user/obtenerUsers') ?>" class="tip-top">Usuarios</a></li>
-                    <li><a href="" data-toggle="tab" data-placement="top" class="tip-top">Acerca de..</a></li>
+                   
                 </ul>
                 <div id="my-tab-content" class="tab-content">
                     <div class="tab-pane active" id="carreras">
@@ -74,9 +74,9 @@
                                                                     <td>{$row->codigo_carrera}</td>
                                                                     <td>{$row->nombre}</td>
                                                                     <td> 
-                                                                        <input id=".$row->codigo_carrera." class=btn-danger type=submit value=Eliminar>
-                                                                        <input id=".$row->codigo_carrera." class=btn-success type=submit value=Modificar>
-                                                                        <input id=".$row->codigo_carrera." class=btn-info type=submit value=Detalles>
+                                                                        <a href=../career/delete/{$row->id_carreras}><button class=btn-danger>Eliminar</button></a>
+                                                                    <a href=../career/delete/{$row->id_carreras}><button class=btn-success>Modificar</button></a>
+                                                                    <a href=../career/delete/{$row->id_carreras}><button class=btn-info>Detalles</button></a>
                                                                     </td>
                                                                 </tr>";
                                                             }
