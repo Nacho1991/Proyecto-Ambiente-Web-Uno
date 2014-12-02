@@ -12,15 +12,13 @@ class User extends CI_Controller {
     }
 
     public function index() {
-        $users = $this->user->get_all();
-        if ($users) {
-            $data = array('usuarios' => $users);
-            $this->load->view('plantillas/header');
-            $this->load->view('user/dashboard', $data);
-        } else if ($users === null) {
-            $this->load->view('plantillas/header');
-            $this->load->view('user/dashboard', $data);
-        }
+
+        $contador = array(
+            'usuarios' => $this->user->contarRegistrosUsuarios(),
+            'estudiantes' => $this->user->contarRegistrosEstudiantes(),
+            'carreras' => $this->user->contarRegistrosCarreras());
+        $this->load->view('plantillas/header');
+        $this->load->view('user/dashboard', $contador);
     }
 
     public function detalles($pId) {
@@ -30,7 +28,9 @@ class User extends CI_Controller {
     }
 
     public function detallesActualizar($pId) {
-        $data = array('detalles' => $this->user->detalles($pId));
+        $data = array(
+            'detalles' => $this->user->detalles($pId),
+            'roles' => $this->user->obtenerRoles());
         $this->load->view('plantillas/header');
         $this->load->view('/user/details_user_update', $data);
     }
@@ -55,11 +55,14 @@ class User extends CI_Controller {
     }
 
     public function delete($id) {
-        $user = $this->user->delete($id);
-        if ($user) {
-            $this->load->view('plantillas/header');
-            $this->load->view('/user/users_view');
-        }
+        $this->user->delete($id);
+        $this->load->view('plantillas/header');
+        redirect('user/obtenerUsers', 'refresh');
+    }
+
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect('user/login');
     }
 
     public function obtenerUsers() {
@@ -72,13 +75,16 @@ class User extends CI_Controller {
     }
 
     public function authenticate() {
+        $contador = array(
+            'usuarios' => $this->user->contarRegistrosUsuarios(),
+            'estudiantes' => $this->user->contarRegistrosEstudiantes(),
+            'carreras' => $this->user->contarRegistrosCarreras());
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-        // llamamos al modelo User y el método de authenticate
-        $user = $this->user->authenticate($username, $password);
-        if ($user) {
+        $datos = $this->user->authenticate($username, $password);
+        if ($datos) {
             $this->load->view('plantillas/header');
-            $this->load->view('/user/dashboard');
+            $this->load->view('/user/dashboard', $contador);
         } else {
             $this->load->view('plantillas/header');
             $this->load->view('/user/login');
@@ -86,38 +92,42 @@ class User extends CI_Controller {
     }
 
     public function actualizar() {
-
         $id = $this->input->post('id');
         $cedula = $this->input->post('cedula');
         $nombre = $this->input->post('nombre');
-        $role = $this->input->post('role');
-        $nombreUsuario = $this->input->post('nombreusuario');
-        $contrasenna = $this->input->post('contrasenna');
-        $user = $this->update($id, $cedula, $nombre, $nombreUsuario, $contrasenna, $role);
-        if (!$user) {
-            echo 'error';
+        $cmbRol = $this->input->post('rol');
+        $nombreUsuario = $this->input->post('nombreusuarios');
+        $password = $this->input->post('contrasenna');
+        $contrasenna = md5($password);
+        $user = $this->user->update($id, $cedula, $nombre, $nombreUsuario, $contrasenna, $cmbRol);
+        if ($user) {
+            redirect("user/obtenerUsers", "refresh");
         }
     }
 
     public function insert() {
         $cedula = $this->input->post('cedula');
         $nombre = $this->input->post('nombre');
-        $role = $this->input->post('roles');
         $nombreUsuario = $this->input->post('nombreusuario');
-        $contrasenna = $this->input->post('contrasenna');
-        $user = $this->user->insert_user($nombre, $cedula, $nombreUsuario, $contrasenna, $role);
-        if (!$user) {
-            echo 'error';
-        }
+        $password = $this->input->post('contrasenna');
+        $contrasenna = md5($password);
+        $cmbRol = $this->input->post('roles');
+        $this->user->insert_user($nombre, $cedula, $nombreUsuario, $contrasenna, $cmbRol);
+        redirect("/user/obtenerUsers", "refresh");
     }
 
     public function dashboard() {
-
+        $contador = array(
+            'usuarios' => $this->user->contarRegistrosUsuarios(),
+            'estudiantes' => $this->user->contarRegistrosEstudiantes(),
+            'carreras' => $this->user->contarRegistrosCarreras());
         $username = $this->input->get('uid');
         $user = $this->user->get_user($username);
-        $data['user_info'] = $user;
-        $data['title'] = 'Title';
-        $this->load->view('user/dashboard', $data);
+        if (!$user) {
+            redirect('user/authenticate');
+        } else {
+            $this->load->view('user/dashboard', $contador);
+        }
     }
 
 }

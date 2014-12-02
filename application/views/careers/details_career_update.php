@@ -1,4 +1,3 @@
-
 <body>
     <div class="container">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -27,9 +26,9 @@
         <div id="content">
             <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
                 <li><a href="<?php echo base_url('user/index') ?>"class="tip-top">Dashboard</a></li>
-                <li><a href="<?php echo base_url('career/obtenerCarreras') ?>" class="tip-top">Carreras</a></li>
+                <li class="active"><a href="<?php echo base_url('career/obtenerCarreras') ?>" class="tip-top">Carreras</a></li>
                 <li><a href="<?php echo base_url('student/obtenerStudents') ?>" class="tip-top">Estudiantes</a></li>
-                <li class="active"><a href="<?php echo base_url('user/obtenerUsers') ?>" class="tip-top">Usuarios</a></li>
+                <li><a href="<?php echo base_url('user/obtenerUsers') ?>" class="tip-top">Usuarios</a></li>
 
             </ul>
             <div id="my-tab-content" class="tab-content">
@@ -38,7 +37,7 @@
 
                 <div class="tab-pane active" id="usuarios">
                     <center>
-                        <h3 class="page-header">Registrar usuario</h3>
+                        <h3 class="page-header">Registrar carrera</h3>
                     </center>
                     <div class="container">
                         <div class="row">
@@ -53,30 +52,23 @@
                                     <div class="row"> 
                                         <div class="col-xs-12"> 
                                             <div class="table-responsive">
-                                                <form class="form-group" action="<?php echo base_url('user/insert') ?>" method="post" accept-charset="utf-8">
+                                                <form action="<?php echo base_url('career/update') ?>" method="post" accept-charset="utf-8">
                                                     <center>
-                                                        <div class=form-group>
-                                                            <label>Cédula: <input placeholder="Cédula" class="form-control" type="text" name="cedula" /></label>
-                                                            <label>Nombre:  <input placeholder="Nombre propio del usuario" class=form-control type="text" name="nombre" /></label>   
-                                                        </div>
-                                                        <div class=form-group>
-                                                            <label>Nombre de usuario: <input placeholder="Nombre de usuario" class=form-control type="text" name="nombreusuario" /></label> 
-                                                            <label>Role:
-                                                                <select class="form-control custom" name="roles" id="roles">
-                                                                    <?php
-                                                                    foreach ($roles->result()as $row) {
-                                                                        echo "<option value=$row->id_roles>$row->tipo_usuario</option>";
-                                                                    }
-                                                                    ?>
-                                                                </select></label>
-                                                        </div>
-                                                        <div class=form-group>
-                                                            <label>Contraseña: <input placeholder="Contraseña" class="form-control" type="password" name="contrasenna" /></label>
-                                                            <label>Contraseña:<input placeholder="Vuelva a digitar la contraseña" class="form-control" type="password" name="verificarcontrasenna" /></label>
-                                                        </div>
-                                                        <input type="submit" value="Registrar" name="btnRegistrar" class="btn btn-info">
+                                                        <?php
+                                                        foreach ($detalles->result()as $row) {
+                                                            echo
+                                                            "
+                                                            <label>N° registro: <input class=form-control readonly= type=text value={$row->id_carreras} name=id /></label> 
+                                                            <label>Código de la carrera:<input class=form-control typetext value={$row->codigo_carrera} name=codigo /></label>
+                                                            <label>Nombre: <input class=form-control type=text value={$row->nombre} name=nombre /></label>";
+                                                        }
+                                                        ?>
+                                                        <input type="submit" class="btn btn-danger" value="Actualizar">
                                                     </center>
                                                 </form>
+                                                <center>
+                                                    <a href="../obtenerCarreras"><button class="btn btn-success">Atrás</button></a>
+                                                </center>
                                             </div> 
                                         </div> 
                                     </div> 
@@ -90,4 +82,3 @@
     </div>
 </body>
 </html>
-

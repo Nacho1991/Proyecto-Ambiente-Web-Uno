@@ -6,27 +6,27 @@ class Career_model extends CI_Model {
         parent::__construct();
     }
 
-    function update($codigo,$nombre) {
+    function update($pId,$codigo, $nombre) {
         $data = array(
             'codigo_carrera' => $codigo,
             'nombre' => $nombre
         );
-        $this->db->where('codigo_carrera', $codigo);
-        $query = $this->db->update('carreras', $data);
-        if ($query->num_rows() > 0) {
-            return $query->row();
-        } else {
-            return null;
-        }
+        $this->db->where('id_carreras', $pId);
+        $this->db->update('carreras', $data);
     }
 
-    function delete($codigo) {
+    function delete($pId) {
         $data = array(
-            'codigo_carrera' => $codigo
+            'id_carreras' => $pId
         );
-        $query = $this->db->delete('carreras', $data);
+        $this->db->delete('carreras', $data);
+    }
+
+    function detalles($pId) {
+        $this->db->where("id_carreras", $pId);
+        $query = $this->db->get('carreras');
         if ($query->num_rows() > 0) {
-            return $query->row();
+            return $query;
         } else {
             return null;
         }
@@ -37,12 +37,7 @@ class Career_model extends CI_Model {
             'codigo_carrera' => $codigo,
             'nombre' => $carrera
         );
-        $query = $this->db->insert('carreras', $data);
-        if ($query->num_rows() > 0) {
-            return $query->row();
-        } else {
-            return null;
-        }
+        $this->db->insert('carreras', $data);
     }
 
     function get_career($codigo) {

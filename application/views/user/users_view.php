@@ -72,20 +72,20 @@
                                                     </thead> 
                                                     <tbody>
                                                         <?php
-                                                        foreach ($usuarios->result()as $row) {
-                                                            switch ($row->role_fk) {
-                                                                case 1:
-                                                                    $roleAdministrativo = "Administrador";
-                                                                    break;
-                                                                case 2:
-                                                                    $roleAdministrativo = "Director de carrera";
-                                                                    break;
-                                                                case 3:
-                                                                    $roleAdministrativo = "Profesor";
-                                                            }
-                                                            echo
-
-                                                            "<tr>
+                                                        if ($usuarios!=NULL) {
+                                                            foreach ($usuarios->result()as $row) {
+                                                                switch ($row->role_fk) {
+                                                                    case 1:
+                                                                        $roleAdministrativo = "Administrador";
+                                                                        break;
+                                                                    case 2:
+                                                                        $roleAdministrativo = "Director de carrera";
+                                                                        break;
+                                                                    case 3:
+                                                                        $roleAdministrativo = "Profesor";
+                                                                }
+                                                                echo
+                                                                "<tr>
                                                                     <td>{$row->id_usuarios}</td>
                                                                     <td>{$row->cedula}</td>
                                                                     <td>{$row->nombre}</td>
@@ -96,6 +96,13 @@
                                                                     <a href=../user/detallesEliminar/{$row->id_usuarios}><button class=btn-danger>Eliminar</button></a>
                                                                     <a href=../user/detallesActualizar/{$row->id_usuarios}><button class=btn-success>Modificar</button></a>
                                                                     <a href=../user/detalles/{$row->id_usuarios}><button class=btn-info>Detalles</button></a>
+                                                                    </td>
+                                                                </tr>";
+                                                            }
+                                                        }else{
+                                                            echo"<tr>
+                                                                 <td colspan=7 align=center>
+                                                                    No hay registros
                                                                     </td>
                                                                 </tr>";
                                                         }

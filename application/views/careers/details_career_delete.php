@@ -52,20 +52,21 @@
                                     <div class="row"> 
                                         <div class="col-xs-12"> 
                                             <div class="table-responsive">
-
                                                 <center>
                                                     <?php
                                                     foreach ($detalles->result()as $row) {
                                                         echo
                                                         "
-                                                            <label>N° registro: <input class=form-control readonly= type=text value={$row->id_carreras} name=id readonly= /></label> 
-                                                            <label>Código de la carrera:<input class=form-control typetext value={$row->codigo_carrera} name=codigo readonly= /></label>
+                                                            <label>N° registro: <input class=form-control readonly= type=text value={$row->id_carreras} name=id /></label> 
+                                                            <label>Código de la carrera:<input class=form-control type=text value={$row->codigo_carrera} name=codigo readonly= /></label>
                                                             <label>Nombre: <input class=form-control type=text value={$row->nombre} name=nombre readonly= /></label>
-                                                            <a href=../update/{$row->id_carreras}><button name=btnActualizar class=btn-danger>Actualizar</button></a>";
+                                                            <a href=../delete/{$row->id_carreras}><button name=btnEliminar class=btn-danger>Eliminar</button></a>";
                                                     }
                                                     ?>
+                                                    
                                                 </center>
                                                 <center>
+                                                    
                                                     <a href="../obtenerCarreras"><button class="btn btn-success">Atrás</button></a>
                                                 </center>
                                             </div> 
@@ -81,3 +82,5 @@
     </div>
 </body>
 </html>
+
+

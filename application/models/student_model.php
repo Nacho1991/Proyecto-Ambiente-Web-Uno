@@ -6,17 +6,23 @@ class Student_model extends CI_Model {
         parent::__construct();
     }
 
-    function update($nombre, $cedula, $carrera, $nivelIngles, $habilidades) {
+    function update($id, $cedula, $nombre, $carrera, $nivelIngles, $habilidades) {
         $data = array(
+            'cedula' => $cedula,
             'nombre' => $nombre,
             'carrera_fk' => $carrera,
             'nivel_ingles' => $nivelIngles,
             'skill_fk' => $habilidades
         );
-        $this->db->where('cedula', $cedula);
-        $query = $this->db->update('estudiante', $data);
+        $this->db->where('id_estudiante', $id);
+        $this->db->update('estudiante', $data);
+    }
+
+    public function detalles($pId) {
+        $this->db->where("id_estudiante", $pId);
+        $query = $this->db->get('estudiante');
         if ($query->num_rows() > 0) {
-            return $query->row();
+            return $query;
         } else {
             return null;
         }
@@ -42,16 +48,29 @@ class Student_model extends CI_Model {
             'nivel_ingles' => $nivelIngles,
             'skill_fk' => $habilidades
         );
-        $query = $this->db->insert('estudiante', $data);
+        $this->db->insert('estudiante', $data);
+    }
+
+    function obtenerSkills() {
+        $query = $this->db->get('skills');
         if ($query->num_rows() > 0) {
-            return $query->row();
+            return $query;
         } else {
-            return null;
+            return false;
         }
     }
 
-    function get_student($cedula) {
-        $this->db->where('cedula', $cedula);
+    function obtenerCarreras() {
+        $query = $this->db->get('carreras');
+        if ($query->num_rows() > 0) {
+            return $query;
+        } else {
+            return false;
+        }
+    }
+
+    function get_student($pId) {
+        $this->db->where('id_estudiante', $pId);
         $query = $this->db->get('estudiante');
         return $query->row();
     }

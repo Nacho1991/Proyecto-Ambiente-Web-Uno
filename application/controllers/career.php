@@ -26,30 +26,47 @@ class Career extends CI_Controller {
         $this->load->view('careers/careers_view', $data);
     }
 
-    public function actualizar() {
-        $codigo = $this->input->post('codcarrera');
+    public function update() {
+        $id = $this->input->post('id');
+        $codigo = $this->input->post('codigo');
         $nombre = $this->input->post('nombre');
-        $user = $this->update($codigo, $nombre);
-        if (!$user) {
-            echo 'error';
-        }
+        $this->career->update($id, $codigo, $nombre);
+        redirect('career/obtenerCarreras', 'refresh');
     }
 
-    public function delete() {
-        $codigo = $this->input->post('codigo');
-        $user = $this->career->delete($codigo);
-        if (!$user) {
-            echo 'error';
-        }
+    public function detalles($pId) {
+        $data = array('detalles' => $this->career->detalles($pId));
+        $this->load->view('plantillas/header');
+        $this->load->view('/careers/details_career_view', $data);
+    }
+
+    public function detallesInsertar() {
+        $this->load->view('plantillas/header');
+        $this->load->view('careers/insert_career');
+    }
+
+    public function detallesEliminar($pId) {
+        $data = array('detalles' => $this->career->detalles($pId));
+        $this->load->view('plantillas/header');
+        $this->load->view('/careers/details_career_delete', $data);
+    }
+
+    public function detallesModificar($pId) {
+        $data = array('detalles' => $this->career->detalles($pId));
+        $this->load->view('plantillas/header');
+        $this->load->view('/careers/details_career_update', $data);
+    }
+
+    public function delete($pId) {
+        $this->career->delete($pId);
+        redirect('career/obtenerCarreras', 'refresh');
     }
 
     public function insert() {
-        $codigo = $this->input->post('codcarrera');
-        $nombre = $this->input->post('nombreCarrera');
-        $user = $this->career->insert_career($codigo,$nombre);
-        if (!$user) {
-            echo 'error';
-        }
+        $codigo = $this->input->post('codigo');
+        $nombre = $this->input->post('nombrecarrera');
+        $this->career->insert_career($codigo, $nombre);
+        redirect('career/obtenerCarreras', 'refresh');
     }
 
 }

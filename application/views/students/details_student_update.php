@@ -52,10 +52,15 @@
                                 <div class="row"> 
                                     <div class="col-xs-12"> 
                                         <div class="table-responsive">
-                                            <form class="form-group" action="<?php echo base_url('student/insert') ?>" method="post" accept-charset="utf-8">
+                                            <form action="<?php echo base_url('student/actualizar') ?>" method="post" accept-charset="utf-8">
                                                 <center>
-                                                    <label>Cédula: <input placeholder="Cédula del estudiante" class="form-control" type="text" name="cedula" /></label>
-                                                    <label>Nombre:  <input placeholder="Nombre del estudiante" class=form-control type="text" name="nombre" /></label>   
+                                                    <?php
+                                                    foreach ($detalles->result()as $row) {
+                                                        echo "<label>N° registro:<input class=form-control type=text name=id value={$row->id_estudiante} readonly= /></label>"
+                                                        . "<label>Cedula:<input class=form-control type=text name=cedula value={$row->cedula} /></label>"
+                                                        . "<label>Nombre:<input class=form-control type=text name=nombre value={$row->nombre} /></label>";
+                                                    }
+                                                    ?>
                                                     <label>Carreras:
                                                         <select class="form-control custom" name="carreras" id="carreras">
                                                             <?php
@@ -70,7 +75,7 @@
                                                         </select>
                                                     </label>
                                                     <label>Habilidades:
-                                                        <select class="form-control custom" name="habilidades" id="roles">
+                                                        <select class="form-control custom" name="habilidades" id="habilidades">
                                                             <?php
                                                             if ($skills != NULL) {
                                                                 foreach ($skills->result()as $row) {
@@ -90,10 +95,13 @@
                                                             <option value="Nivel Avanzado">Nivel Avanzado</option>
                                                         </select>
                                                     </label>
-                                                    <input class="btn btn-primary" type="submit" value="Registrar" name="btnRegistrar" class="btn btn-info">
+                                                    <input class="btn btn-primary" type="submit" name="btnActualizar" value="Actualizar">
+
                                                 </center>
                                             </form>
-                                          
+                                            <center>
+                                                <a href="../obtenerStudents"><button type="button" class="btn btn-success">Atrás</button></a>
+                                            </center>
                                         </div> 
                                     </div> 
                                 </div> 
@@ -103,4 +111,3 @@
                 </div>
             </div>
         </div>
-

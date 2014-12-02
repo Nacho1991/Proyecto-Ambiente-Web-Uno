@@ -35,9 +35,10 @@
                 <!--Tab de usuarios !-->
 
                 <div class="tab-pane active" id="usuarios">
-                    <center>
-                        <h3 class="page-header">Eliminar usuario</h3>
-                    </center>
+                    <fieldset>
+                        <center>
+                        <legend>Eliminar usuario</legend>
+                        </center>
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
@@ -82,7 +83,7 @@
                                                       ";
                                                     }
                                                     ?>
-                                                    <a href="../obtenerUsers"><button class=btn-success>Atrás</button></a>
+                                                    <a href="../obtenerUsers"><button class="btn btn-success">Atrás</button></a>
                                                 </center>
                                             </div> 
                                         </div> 
@@ -91,7 +92,9 @@
                             </div>
                         </div>
                     </div>
+                    </fieldset>
                 </div>
+                
             </div>
         </div>
     </div>

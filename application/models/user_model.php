@@ -8,10 +8,9 @@ class User_model extends CI_Model {
 
     function authenticate($nombreUsuario, $contrasenna) {
         // convierto el password a MD5 para comparar
-        //$password = md($password);
-
+        $password = md5($contrasenna);
         $this->db->where('nombre_usuario', $nombreUsuario);
-        $this->db->where('contrasenna', $contrasenna);
+        $this->db->where('contrasenna', $password);
         $query = $this->db->get('usuarios');
         if ($query->num_rows() > 0) {
             return $query->row();
@@ -29,7 +28,16 @@ class User_model extends CI_Model {
         }
     }
 
-    function update($id, $cedula, $nombre, $nombreUsuario, $contrasenna, $role) {
+    function contarRegistrosUsuarios() {
+        return $rowcount = $this->db->count_all('usuarios');
+    }
+    function contarRegistrosEstudiantes(){
+        return $rowcount = $this->db->count_all('estudiante');
+    }
+    function contarRegistrosCarreras(){
+        return $rowCount=$this->db->count_all('carreras');
+    }
+            function update($id, $cedula, $nombre, $nombreUsuario, $contrasenna, $role) {
         $data = array(
             'nombre' => $nombre,
             'cedula' => $cedula,
@@ -38,12 +46,9 @@ class User_model extends CI_Model {
             'role_fk' => $role
         );
         $this->db->where('id_usuarios', $id);
-        $query = $this->db->update('usuarios', $data);
-        if ($query->num_rows() > 0) {
-            return $query->row();
-        } else {
-            return null;
-        }
+        $this->db->update('usuarios', $data);
+
+        return $this->detalles($id);
     }
 
     function detalles($pId) {
@@ -60,12 +65,7 @@ class User_model extends CI_Model {
         $data = array(
             'id_usuarios' => $cedula
         );
-        $query = $this->db->delete('usuarios', $data);
-        if ($query->num_rows() > 0) {
-            return $query->row();
-        } else {
-            return null;
-        }
+        $this->db->delete('usuarios', $data);
     }
 
     function insert_user($nombre, $cedula, $nombreUsuario, $contrasenna, $role) {
@@ -76,12 +76,7 @@ class User_model extends CI_Model {
             'contrasenna' => $contrasenna,
             'role_fk' => $role
         );
-        $query = $this->db->insert('usuarios', $data);
-        if ($query->num_rows() > 0) {
-            return $query->row();
-        } else {
-            return null;
-        }
+        $this->db->insert('usuarios', $data);
     }
 
     function get_user($nombreUsuario) {

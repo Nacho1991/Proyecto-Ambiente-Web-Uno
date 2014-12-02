@@ -43,13 +43,14 @@
                                 <div class="col-xs-12">
                                     <div class="col-xs-6">
                                         <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#nuevacarrera">Nuevo</button>
+                                            <span class="input-btn">
+                                                <a href="../career/detallesInsertar"> <button class="btn btn-primary">Nuevo</button></a>
                                             </span>
                                         </div>
                                     </div>
                                     <br>
                                     <br>
+                                    
                                     <!--Tabla que contiene todos los registros de las carreras de la base de datos!-->
 
                                     <div id="divLista" class="container"> 
@@ -67,6 +68,7 @@
                                                         </thead> 
                                                         <tbody>
                                                             <?php
+                                                            if ($carreras != NULL) {
                                                             foreach ($carreras->result()as $row) {
                                                                 echo
                                                                 "<tr>
@@ -74,9 +76,16 @@
                                                                     <td>{$row->codigo_carrera}</td>
                                                                     <td>{$row->nombre}</td>
                                                                     <td> 
-                                                                        <a href=../career/delete/{$row->id_carreras}><button class=btn-danger>Eliminar</button></a>
-                                                                    <a href=../career/delete/{$row->id_carreras}><button class=btn-success>Modificar</button></a>
-                                                                    <a href=../career/delete/{$row->id_carreras}><button class=btn-info>Detalles</button></a>
+                                                                        <a href=../career/detallesEliminar/{$row->id_carreras}><button class=btn-danger>Eliminar</button></a>
+                                                                    <a href=../career/detallesModificar/{$row->id_carreras}><button class=btn-success>Modificar</button></a>
+                                                                    <a href=../career/detalles/{$row->id_carreras}><button class=btn-info>Detalles</button></a>
+                                                                    </td>
+                                                                </tr>";
+                                                            }
+                                                            }else{
+                                                                echo"<tr>
+                                                                 <td colspan=7 align=center>
+                                                                    No hay registros
                                                                     </td>
                                                                 </tr>";
                                                             }
@@ -87,41 +96,6 @@
                                             </div> 
                                         </div> 
                                     </div> 
-
-                                    <!-- Modelo encargado de registrar a los usuarios en la base de datos-->
-
-                                    <div class="modal fade"  id="nuevacarrera">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-                                                    <center>
-                                                        <h4 class="page-header">Agregar carrera</h4>
-                                                    </center>
-                                                    <div class="modal-body">
-                                                        <form action="<?php echo base_url('career/insert') ?>" method="post" accept-charset="utf-8">
-                                                            <div class="form-group">
-                                                                <label for="txtCodCarrera">Código de la carrera:</label>
-                                                                <input name="codcarrera" type="text" class="form-control" id="txtCodCarrera"
-                                                                       placeholder="Codigo de la carrera">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="txtNombreCarrera">Nombre de la carrera:</label>
-                                                                <input name="nombreCarrera"type="text" class="form-control" id="txtNombreCarrera" 
-                                                                       placeholder="Nombre de la carrera">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <center>
-                                                                    <input class="btn btn-success" type="submit" value="Registrar">
-                                                                    <button id="btnSalirCarrera" class="btn btn-danger" data-dismiss="modal" type="button">Salir</button>
-                                                                </center>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> 
-                                    </div>
                                 </div>
                             </div>
                         </div> 
