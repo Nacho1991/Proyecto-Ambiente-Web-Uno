@@ -45,7 +45,7 @@
         </div>
     </header>
 <center>
-    <h3 class="page-header">Usuarios</h3>
+    <h3 class="page-header">Dashboard</h3>
 </center>
 <div class="navbar-inner">
     <div class="container-fluid">

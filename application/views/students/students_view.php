@@ -89,7 +89,7 @@
                                                                     <td> 
                                                                     
                                                                          <a href=../student/detallesEliminar/{$row->id_estudiante}><button class=btn-danger type=button>Eliminar</button></a>
-                                                                         <a href=../student/detallesModificar/{$row->id_estudiante}><button class=btn-success type=button>Modificar</button></a>
+                                                                         <a href=../student/detallesModificar/{$row->id_estudiante}/{$row->cedula}><button class=btn-success type=button>Modificar</button></a>
                                                                          <a href=../student/detalles/{$row->id_estudiante}><button class=btn-info type=button>Detalles</button></a>
                                                                     </td>
                                                                 </tr>";

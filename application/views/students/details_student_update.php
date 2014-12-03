@@ -51,12 +51,15 @@
         <div class="col-xs-12">
             <div id="divLista" class="container"> 
                 <form action="<?php echo base_url('student/actualizar') ?>" method="post" accept-charset="utf-8">
-                    <center>
+                    <fieldset>
+                        <legend>Datos del estudiante</legend>
                         <?php
-                        foreach ($detalles->result()as $row) {
-                            echo "<label>N° registro:<input class=form-control type=text name=id value={$row->id_estudiante} readonly= /></label>"
-                            . "<label>Cedula:<input class=form-control type=text name=cedula value={$row->cedula} /></label>"
-                            . "<label>Nombre:<input class=form-control type=text name=nombre value={$row->nombre} /></label>";
+                        if ($detalles != null) {
+                            foreach ($detalles->result()as $row) {
+                                echo "<label>N° registro:<input class=form-control type=text name=id value={$row->id_estudiante} readonly= /></label>"
+                                . "<label>Cedula:<input class=form-control type=text name=cedula value={$row->cedula} /></label>"
+                                . "<label>Nombre:<input class=form-control type=text name=nombre value={$row->nombre} /></label>";
+                            }
                         }
                         ?>
                         <label>Carreras:
@@ -93,13 +96,91 @@
                                 <option value="Nivel Avanzado">Nivel Avanzado</option>
                             </select>
                         </label>
-                        <input class="btn btn-primary" type="submit" name="btnActualizar" value="Actualizar">
+                    </fieldset>
 
-                    </center>
+                    <fieldset>
+                        <legend>Comentarios realizados</legend>
+                        <div class="container">
+                            <div class="table-responsive"> 
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del profesor</th>
+                                            <th>Comentario</th>
+                                            <th>Fecha</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if ($comentarios != NULL) {
+                                            foreach ($comentarios->result()as $row) {
+                                                echo
+                                                "<tr>
+                                                                    <td>{$row->nombre_profesor}</td>
+                                                                    <td>{$row->fecha}</td>
+                                                                    <td>{$row->comentario}</td>
+                                                                    
+                                                                    
+                                                                </tr>";
+                                            }
+                                        } else {
+                                            echo"<tr>
+                                                                 <td colspan=3 align=center>
+                                                                    No hay comentarios
+                                                                    </td>
+                                                                </tr>";
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Proyectos asociados</legend>
+                        <div class="container">
+                            <div class="table-responsive"> 
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del curso</th>
+                                            <th>Duración</th>
+                                            <th>Tecnologias</th>
+                                            <th>Descripción</th>
+                                            <th>Calificación</th>
+                                            <th>Fecha</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if ($proyectos != NULL) {
+                                            foreach ($proyectos->result()as $row) {
+                                                echo
+                                                "<tr>
+                                                                    <td>{$row->curso_fk}</td>
+                                                                    <td>{$row->duracion}</td>
+                                                                    <td>{$row->tecnologias_fk}</td>
+                                                                    <td>{$row->descripcion}</td>
+                                                                    <td>{$row->calificacion}</td>
+                                                                    <td>{$row->fecha}</td>
+                                                                </tr>";
+                                            }
+                                        } else {
+                                            echo"<tr>
+                                                                 <td colspan=6 align=center>
+                                                                    No hay proyectos asociados
+                                                                    </td>
+                                                                </tr>";
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <input class="btn btn-primary" type="submit" name="btnActualizar" value="Actualizar">
                 </form>
-                <center>
-                    <a href="../obtenerStudents"><button type="button" class="btn btn-success">Atrás</button></a>
-                </center>
+                <a href="<?php echo base_url('student/obtenerStudents') ?>"><button type="button" class="btn btn-success">Atrás</button></a>
             </div> 
         </div> 
     </div> 

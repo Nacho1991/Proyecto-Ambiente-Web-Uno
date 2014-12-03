@@ -33,11 +33,13 @@ class Student extends CI_Controller {
         $this->load->view('students/details_insert_proyect');
     }
 
-    public function detallesModificar($pId) {
+    public function detallesModificar($pId,$pCedula) {
         $data = array(
             'detalles' => $this->student->detalles($pId),
             'skills' => $this->student->obtenerSkills(),
-            'carreras' => $this->student->obtenerCarreras()
+            'carreras' => $this->student->obtenerCarreras(),
+            'comentarios' => $this->student->obtenerComentarios($pCedula),
+            'proyectos' => $this->student->obtenerProyectos($pCedula)
         );
         $this->load->view('plantillas/header');
         $this->load->view('/students/details_student_update', $data);
@@ -124,7 +126,7 @@ class Student extends CI_Controller {
         $fechaProfesor = $this->input->post('fechaProfesor');
         $comentario = $this->input->post('comentarioProfesor');
 
-        $this->student->insertarComentario($cedula,$nombreProfesor, $fechaProfesor, $comentario);
+        $this->student->insertarComentario($cedula, $nombreProfesor, $fechaProfesor, $comentario);
 
         redirect("student/obtenerStudents", "refresh");
     }

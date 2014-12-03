@@ -74,6 +74,26 @@ class Student_model extends CI_Model {
         $this->db->insert('proyectos', $data);
     }
 
+    function obtenerComentarios($pCedula) {
+        $this->db->where("estudiante_fk", $pCedula);
+        $query = $this->db->get('comentarios');
+        if ($query->num_rows() > 0) {
+            return $query;
+        } else {
+            return false;
+        }
+    }
+
+    function obtenerProyectos($pCedula) {
+        $this->db->where("estudiante_fk", $pCedula);
+        $query = $this->db->get('proyectos');
+        if ($query->num_rows() > 0) {
+            return $query;
+        } else {
+            return false;
+        }
+    }
+
     function obtenerSkills() {
         $query = $this->db->get('skills');
         if ($query->num_rows() > 0) {

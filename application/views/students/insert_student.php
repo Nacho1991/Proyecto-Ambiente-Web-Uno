@@ -226,6 +226,7 @@
                             <input class="btn btn-primary" type="submit" value="Registrar" name="btnRegistrar" class="btn btn-info">
                         </center>
                     </form>
+                    <a href="<?php echo base_url('student/obtenerStudents') ?>"><button type="button" class="btn btn-success">Atrás</button></a>
                 </div> 
             </div>
         </div>
