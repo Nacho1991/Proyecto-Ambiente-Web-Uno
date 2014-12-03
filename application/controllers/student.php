@@ -27,8 +27,10 @@ class Student extends CI_Controller {
         $this->load->view('plantillas/header');
         $this->load->view('students/students_view', $data);
     }
-    public function asociarProyecto($pId){
-        
+
+    public function asociarProyecto() {
+        $this->load->view('/plantillas/header');
+        $this->load->view('students/details_insert_proyect');
     }
 
     public function detallesModificar($pId) {
@@ -44,7 +46,9 @@ class Student extends CI_Controller {
     public function detallesInsertar() {
         $habilidades = array(
             'skills' => $this->student->obtenerSkills(),
-            'carreras' => $this->student->obtenerCarreras()
+            'carreras' => $this->student->obtenerCarreras(),
+            'tecnologias' => $this->student->obtenerTecnologias(),
+            'cursos' => $this->student->obtenerCursos()
         );
         $this->load->view('/plantillas/header');
         $this->load->view('students/insert_student', $habilidades);
@@ -102,6 +106,26 @@ class Student extends CI_Controller {
         $habilidades = $this->input->post('habilidades');
         $carrera = $this->input->post('carreras');
         $this->student->insert_student($nombre, $cedula, $carrera, $nivelIngles, $habilidades);
+
+        //Datos del proyecto a registrar
+
+        $duracion = $this->input->post('duracion');
+        $cursos = $this->input->post('cursos');
+        $descripcion = $this->input->post('descripcion');
+        $calificacion = $this->input->post('calificacion');
+        $tecnologias = "PHP, Ruby on Rails, C#";
+        $fecha = $this->input->post('fecha');
+
+        $this->student->insertarProyecto($cedula, $cursos, $duracion, $descripcion, $calificacion, $tecnologias, $fecha);
+
+        //Datos del profesor
+
+        $nombreProfesor = $this->input->post('nombreProfesor');
+        $fechaProfesor = $this->input->post('fechaProfesor');
+        $comentario = $this->input->post('comentarioProfesor');
+
+        $this->student->insertarComentario($cedula,$nombreProfesor, $fechaProfesor, $comentario);
+
         redirect("student/obtenerStudents", "refresh");
     }
 

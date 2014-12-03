@@ -35,40 +35,48 @@ INSERT INTO skills(descripcion)VALUES('VRUTO');
 SELECT*FROM skills;
 drop table skills;
 
+USE Universidad;
 create table proyectos(
 	id_proyectos integer (10) primary key auto_increment not null,
 	estudiante_fk varchar (20) not null,
 	curso_fk varchar (50) not null,
 	duracion varchar (50)not null,
-	tecnologias_fk integer (10) not null,
+	tecnologias_fk VARCHAR (50) not null,
 	descripcion varchar (50) not null,
 	calificacion varchar (50) not null,
-	fecha date not null,
+	fecha varchar(100) not null,
 FOREIGN KEY (estudiante_fk) REFERENCES estudiante(cedula) ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY (curso_fk) REFERENCES cursos(codigo_curso) ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY (tecnologias_fk) REFERENCES tecnologias(id_tecnologias) ON UPDATE CASCADE ON DELETE CASCADE
+FOREIGN KEY (curso_fk) REFERENCES cursos(codigo_curso) ON UPDATE CASCADE ON DELETE CASCADE
 );
+DROP TABLE proyectos;
+SELECT*FROM proyectos;
 
 create table cursos(
 	id_cursos integer (10) primary key auto_increment not null,
 	codigo_curso varchar (50) not null unique,
 	nombre varchar (50) not null
 );
+INSERT INTO cursos (codigo_curso,nombre)VALUES('ISW-613','Administración de Sistemas Operativos de Red');
+SELECT*FROM cursos;
 
 create table tecnologias(
 	id_tecnologias integer (10) primary key auto_increment not null,
 	nombre varchar (50) not null
 );
+INSERT INTO tecnologias (nombre)VALUES('Ruby on Rails');
+SELECT*FROM tecnologias;
 
 create table comentarios(
 	id_comentarios integer primary key auto_increment not null,
 	estudiante_fk varchar (20) not null,
-	usuario_fk varchar (20) not null,
-	fecha date not null,
+	nombre_profesor varchar(50) not null,
+	fecha text not null,
 	comentario varchar (50) not null,
-FOREIGN KEY (estudiante_fk) REFERENCES estudiante(cedula) ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY (usuario_fk) REFERENCES usuarios(cedula) ON UPDATE CASCADE ON DELETE CASCADE
+FOREIGN KEY (estudiante_fk) REFERENCES estudiante(cedula) ON UPDATE CASCADE ON DELETE CASCADE
 );
+SELECT*FROM comentarios;
+INSERT INTO comentarios(estudiante_fk,fecha,comentario)VALUES('206910083','24/12/2014','Comentario realizado por el profesor');
+DROP TABLE comentarios;
 
 create table usuarios(
 	id_usuarios integer (10) primary key auto_increment not null,

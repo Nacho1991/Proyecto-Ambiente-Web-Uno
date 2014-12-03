@@ -51,6 +51,29 @@ class Student_model extends CI_Model {
         $this->db->insert('estudiante', $data);
     }
 
+    function insertarComentario($cedula, $nombreProfesor, $fecha, $comentario) {
+        $data = array(
+            'estudiante_fk' => $cedula,
+            'nombre_profesor' => $nombreProfesor,
+            'fecha' => $fecha,
+            'comentario' => $comentario
+        );
+        $this->db->insert('comentarios', $data);
+    }
+
+    function insertarProyecto($cedula, $cursos, $duracion, $descripcion, $calificacion, $tecnologias, $fecha) {
+        $data = array(
+            'estudiante_fk' => $cedula,
+            'curso_fk' => $cursos,
+            'duracion' => $duracion,
+            'tecnologias_fk' => $tecnologias,
+            'descripcion' => $descripcion,
+            'calificacion' => $calificacion,
+            'fecha' => $fecha
+        );
+        $this->db->insert('proyectos', $data);
+    }
+
     function obtenerSkills() {
         $query = $this->db->get('skills');
         if ($query->num_rows() > 0) {
@@ -60,8 +83,26 @@ class Student_model extends CI_Model {
         }
     }
 
+    function obtenerCursos() {
+        $query = $this->db->get('cursos');
+        if ($query->num_rows() > 0) {
+            return $query;
+        } else {
+            return false;
+        }
+    }
+
     function obtenerCarreras() {
         $query = $this->db->get('carreras');
+        if ($query->num_rows() > 0) {
+            return $query;
+        } else {
+            return false;
+        }
+    }
+
+    function obtenerTecnologias() {
+        $query = $this->db->get('tecnologias');
         if ($query->num_rows() > 0) {
             return $query;
         } else {
