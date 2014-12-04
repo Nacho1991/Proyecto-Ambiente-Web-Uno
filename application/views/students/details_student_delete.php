@@ -17,7 +17,7 @@
                     <li>
                         <a href="<?php echo base_url('career/obtenerCarreras') ?>">Carreras</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="<?php echo base_url('student/obtenerStudents') ?>">Estudiantes</a>
                     </li>
                     <li>
@@ -44,39 +44,35 @@
         </div>
     </header>
 <center>
-    <h3 class="page-header">Eliminar usuario</h3>
+    <h3 class="page-header">Eliminar estudiante</h3>
 </center>
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-
-            <br>
-            <br>
-
-            <!--Tabla que contiene todos los registros de los usuarios de la base de datos!-->
-
             <div id="divLista" class="container"> 
-                <div class="row"> 
-                    <div class="col-xs-12"> 
-                        <div class="table-responsive"> 
-                            <center>
-                                <?php
-                                foreach ($estudiante->result()as $row) {
-                                    echo "entro";
-                                }
-                                ?>
-                                <a href="../obtenerUsers"><button class="btn btn-success">Atrás</button></a>
-                            </center>
-                        </div> 
-                    </div> 
-                </div> 
+                <form action="<?php echo base_url('student/delete') ?>" method="post" accept-charset="utf-8">
+                    <fieldset>
+                        <legend>Detalles del estudiante</legend>
+                        <?php
+                        if ($detalles != null) {
+                            foreach ($detalles->result()as $row) {
+                                echo "<label>N° registro:<input class=form-control type=text name=id value={$row->id_estudiante} readonly= /></label>"
+                                . "<label>Cedula:<input class=form-control type=text name=cedula value={$row->cedula} readonly= /></label>"
+                                . "<label>Nombre:<input class=form-control type=text name=nombre value={$row->nombre} readonly= /></label>"
+                                . "<label>Carrera:<input class=form-control typetext name=carrera value={$row->carrera_fk} readonly= /></label>"
+                                . "<label>Nivel de ingles:<input class=form-control type=text name=ingles value={$row->nivel_ingles} readonly= /></label>"
+                                . "<label>Habilidades:<input class=form-control type=text name=ingles value={$row->skill_fk} readonly= /></label>";
+                            }
+                        }
+                        ?>
+
+                    </fieldset>
+                    <input class="btn btn-danger" type="submit" name="btnEliminar" value="Eliminar">
+                </form>
+                <a href="<?php echo base_url('student/obtenerStudents') ?>"><button class="btn btn-primary" type="button" name="btnAtras">Atrás</button></a>
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
-</div>
 </div>
 </body>
 </html>

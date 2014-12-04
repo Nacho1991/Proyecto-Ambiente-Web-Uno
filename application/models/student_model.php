@@ -32,12 +32,7 @@ class Student_model extends CI_Model {
         $data = array(
             'cedula' => $cedula
         );
-        $query = $this->db->delete('estudiante', $data);
-        if ($query->num_rows() > 0) {
-            return $query->row();
-        } else {
-            return null;
-        }
+        $this->db->delete('estudiante', $data);
     }
 
     function insert_student($nombre, $cedula, $carrera, $nivelIngles, $habilidades) {

@@ -17,7 +17,7 @@
                 <li>
                     <a href="<?php echo base_url('career/obtenerCarreras') ?>">Carreras</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="<?php echo base_url('student/obtenerStudents') ?>">Estudiantes</a>
                 </li>
                 <li>

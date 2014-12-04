@@ -33,7 +33,7 @@ class Student extends CI_Controller {
         $this->load->view('students/details_insert_proyect');
     }
 
-    public function detallesModificar($pId,$pCedula) {
+    public function detallesModificar($pId, $pCedula) {
         $data = array(
             'detalles' => $this->student->detalles($pId),
             'skills' => $this->student->obtenerSkills(),
@@ -56,20 +56,23 @@ class Student extends CI_Controller {
         $this->load->view('students/insert_student', $habilidades);
     }
 
-    public function detallesEliminar($pId,$pCedula) {
-        $estudiante = $this->student->detalles($pId);
-        if (!$estudiante) {
-            $datos = array(
-                'estudiante' => $estudiante
-            );
+    public function detallesEliminar($pId, $pCedula) {
+        $data = array(
+            'detalles' => $this->student->detalles($pId),
+            'skills' => $this->student->obtenerSkills(),
+            'carreras' => $this->student->obtenerCarreras(),
+            'comentarios' => $this->student->obtenerComentarios($pCedula),
+            'proyectos' => $this->student->obtenerProyectos($pCedula)
+        );
+        if ($data) {
             $this->load->view('/plantillas/header');
-            $this->load->view('students/details_student_delete', $datos);
+            $this->load->view('students/details_student_delete', $data);
         } else {
             redirect("student/obtenerStudents", "refresh");
         }
     }
 
-    public function detalles($pId,$pCedula) {
+    public function detalles($pId, $pCedula) {
         $data = array(
             'detalles' => $this->student->detalles($pId),
             'skills' => $this->student->obtenerSkills(),
@@ -98,10 +101,8 @@ class Student extends CI_Controller {
 
     public function delete() {
         $cedula = $this->input->post('cedula');
-        $user = $this->student->delete($cedula);
-        if (!$user) {
-            echo 'error';
-        }
+        $this->student->delete($cedula);
+        redirect("student/obtenerStudents", "refresh");
     }
 
     public function insert() {
