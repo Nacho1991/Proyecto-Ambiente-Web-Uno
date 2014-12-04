@@ -96,8 +96,8 @@
                                 <option value="Nivel Avanzado">Nivel Avanzado</option>
                             </select>
                         </label>
+                        <input class="btn btn-primary" type="submit" name="btnActualizar" value="Actualizar">
                     </fieldset>
-
                     <fieldset>
                         <legend>Comentarios realizados</legend>
                         <div class="container">
@@ -117,8 +117,8 @@
                                                 echo
                                                 "<tr>
                                                                     <td>{$row->nombre_profesor}</td>
-                                                                    <td>{$row->fecha}</td>
                                                                     <td>{$row->comentario}</td>
+                                                                    <td>{$row->fecha}</td>
                                                                     
                                                                     
                                                                 </tr>";
@@ -178,11 +178,12 @@
                             </div>
                         </div>
                     </fieldset>
-                    <input class="btn btn-primary" type="submit" name="btnActualizar" value="Actualizar">
+
                 </form>
                 <a href="<?php echo base_url('student/obtenerStudents') ?>"><button type="button" class="btn btn-success">Atrás</button></a>
             </div> 
         </div> 
     </div> 
 </div>
-</div>
+</body>
+</html>

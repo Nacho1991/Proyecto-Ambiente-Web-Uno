@@ -56,7 +56,7 @@ class Student extends CI_Controller {
         $this->load->view('students/insert_student', $habilidades);
     }
 
-    public function detallesEliminar($pId) {
+    public function detallesEliminar($pId,$pCedula) {
         $estudiante = $this->student->detalles($pId);
         if (!$estudiante) {
             $datos = array(
@@ -69,14 +69,17 @@ class Student extends CI_Controller {
         }
     }
 
-    public function detalles($pId) {
-        $estudiante = $this->student->detalles($pId);
-        if (!$estudiante) {
-            $datos = array(
-                'estudiante' => $estudiante
-            );
+    public function detalles($pId,$pCedula) {
+        $data = array(
+            'detalles' => $this->student->detalles($pId),
+            'skills' => $this->student->obtenerSkills(),
+            'carreras' => $this->student->obtenerCarreras(),
+            'comentarios' => $this->student->obtenerComentarios($pCedula),
+            'proyectos' => $this->student->obtenerProyectos($pCedula)
+        );
+        if ($data) {
             $this->load->view('/plantillas/header');
-            $this->load->view('students/details_student_view', $datos);
+            $this->load->view('students/details_student_view', $data);
         } else {
             redirect("student/obtenerStudents", "refresh");
         }

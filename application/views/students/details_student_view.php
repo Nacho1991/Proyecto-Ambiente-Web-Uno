@@ -42,6 +42,116 @@
             </div><!--/.navbar-collapse -->
         </div>
     </header>
+<center>
+    <h3 class="page-header">Detalles del estudiante</h3>
+</center>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="divLista" class="container"> 
+                <form method="post" accept-charset="utf-8">
+                    <fieldset>
+                        <legend>Datos del estudiante</legend>
+                        <?php
+                        if ($detalles != null) {
+                            foreach ($detalles->result()as $row) {
+                                echo "<label>N° registro:<input class=form-control type=text name=id value={$row->id_estudiante} readonly= /></label>"
+                                . "<label>Cedula:<input class=form-control type=text name=cedula value={$row->cedula} readonly= /></label>"
+                                . "<label>Nombre:<input class=form-control type=text name=nombre value={$row->nombre} readonly= /></label>"
+                                . "<label>Carrera:<input class=form-control typetext name=carrera value={$row->carrera_fk} readonly= /></label>"
+                                . "<label>Nivel de ingles:<input class=form-control type=text name=ingles value={$row->nivel_ingles} readonly= /></label>"
+                                . "<label>Habilidades:<input class=form-control type=text name=ingles value={$row->skill_fk} readonly= /></label>";
+                            }
+                        }
+                        ?>
+                        
+                    </fieldset>
+                    <fieldset>
+                        <legend>Comentarios realizados</legend>
+                        <div class="container">
+                            <div class="table-responsive"> 
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del profesor</th>
+                                            <th>Comentario</th>
+                                            <th>Fecha</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if ($comentarios != NULL) {
+                                            foreach ($comentarios->result()as $row) {
+                                                echo
+                                                "<tr>
+                                                                    <td>{$row->nombre_profesor}</td>
+                                                                    <td>{$row->comentario}</td>
+                                                                    <td>{$row->fecha}</td>
+                                                                    
+                                                                    
+                                                                </tr>";
+                                            }
+                                        } else {
+                                            echo"<tr>
+                                                                 <td colspan=3 align=center>
+                                                                    No hay comentarios
+                                                                    </td>
+                                                                </tr>";
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Proyectos asociados</legend>
+                        <div class="container">
+                            <div class="table-responsive"> 
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del curso</th>
+                                            <th>Duración</th>
+                                            <th>Tecnologias</th>
+                                            <th>Descripción</th>
+                                            <th>Calificación</th>
+                                            <th>Fecha</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if ($proyectos != NULL) {
+                                            foreach ($proyectos->result()as $row) {
+                                                echo
+                                                "<tr>
+                                                                    <td>{$row->curso_fk}</td>
+                                                                    <td>{$row->duracion}</td>
+                                                                    <td>{$row->tecnologias_fk}</td>
+                                                                    <td>{$row->descripcion}</td>
+                                                                    <td>{$row->calificacion}</td>
+                                                                    <td>{$row->fecha}</td>
+                                                                </tr>";
+                                            }
+                                        } else {
+                                            echo"<tr>
+                                                                 <td colspan=6 align=center>
+                                                                    No hay proyectos asociados
+                                                                    </td>
+                                                                </tr>";
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <a href="<?php echo base_url('student/obtenerStudents') ?>"><button type="button" class="btn btn-success">Atrás</button></a>
+            </div> 
+        </div> 
+    </div> 
+</div>
 </body>
 </html>
 
