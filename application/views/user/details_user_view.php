@@ -1,5 +1,4 @@
 <body>
-    <body>
     <header class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -22,7 +21,7 @@
                     <li>
                         <a href="<?php echo base_url('student/obtenerStudents') ?>">Estudiantes</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="<?php echo base_url('user/obtenerUsers') ?>">Usuarios</a>
                     </li>
                 </ul>
@@ -31,13 +30,13 @@
                     <li><a href="#">Opciones</a></li>
                     <li>
                         <div class="btn-group navbar-btn">
-                            <button class="btn btn-danger">Ignacio Valerio Vega</button>
-                            <button data-toggle="dropdown" class="btn btn-danger dropdown-toggle"><span class="caret"></span></button>
+                            <button class="btn btn-default">Ignacio Valerio Vega</button>
+                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Perfil</a></li>
                                 <li><a href="#">Configuración</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Cerrar sesión</a></li>
+                                <li><a href="<?php echo base_url('user/logout') ?>">Cerrar sesión</a></li>
                             </ul>
                         </div>
                     </li>
@@ -45,20 +44,36 @@
             </div><!--/.navbar-collapse -->
         </div>
     </header>
-<center>
-    <h3 class="page-header">Detalles del usuario</h3>
-</center>
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <!--Tabla que contiene todos los registros de los usuarios de la base de datos!-->
-            <div id="divLista" class="container"> 
-                <div class="row"> 
-                    <div class="col-xs-12"> 
-                        <div class="table-responsive"> 
-                            <center>
+    
+    <!-- Principal -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <!-- Izquierdo -->
+                <strong>Mantenimientos</strong>
+                <hr>
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="<?php echo base_url('user/index') ?>" title="Dashboard">Dashboard</a></li>
+                    <li><a href="<?php echo base_url('career/obtenerCarreras') ?>" title="Carreras">Carreras</a></li>
+                    <li><a href="<?php echo base_url('student/obtenerStudents') ?>" title="Estudiantes">Estudiantes</a></li>
+                    <li class="active"><a href="<?php echo base_url('user/obtenerUsers') ?>" title="Usuarios">Usuarios</a></li>
+                    <li><a href="#" title="Informacion">Información</a></li>
+                </ul>
+            </div><!-- /span-3 -->
+            <div class="col-md-10">
+                <!-- Right -->
+                <strong><span class="glyphicon glyphicon-dashboard"></span> Detalles de usuario</strong>
+                <hr>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    Formulario
+                                </div>
+                            </div>
+                            <div class="panel-body">
                                 <?php
-                                $id_usuarios;
                                 foreach ($detalles->result()as $row) {
                                     switch ($row->role_fk) {
                                         case 1:
@@ -71,28 +86,77 @@
                                             $roleAdministrativo = "Profesor";
                                     }
                                     echo
-                                    "<div class=form-group>
-                                                        <label>N° registro: <input class=form-control readonly= type=text value={$row->id_usuarios} name=id /></label> 
-                                                        <label>Cédula: <input class=form-control readonly= type=text value={$row->cedula} name=cedula /></label>   
-                                                    </div>
-                                                    <div class=form-group>
-                                                        <label>Nombre:  <input class=form-control readonly= type=text value={$row->nombre} name=nombre /></label>   
-                                                        <label>Nombre de usuario: <input class=form-control readonly= type=text value={$row->nombre_usuario} name=nombreusuarios /></label> 
-                                                    </div>
-                                                    <div class=form-group>
-                                                        <label>Contraseña: <input class=form-control readonly= type=text value={$row->contrasenna} name=contrasenna /> </label>
-                                                        <label>Rol: <input class=form-control readonly= type=text value=" . $roleAdministrativo . " name=role /></label> 
-                                                    </div>";
+                                    "<div class=control-group>
+                                        <label>N° registro:</label> 
+                                            <div class=control-group>
+                                                <input class=form-control readonly= type=text value={$row->id_usuarios} name=id />
+                                            </div>             
+                                    </div>
+                                    <div class=control-group>
+                                        <label>Cédula:</label>
+                                            <div class=control-group>
+                                                <input class=form-control readonly= type=text value={$row->cedula} name=cedula />
+                                            </div>
+                                    </div>
+                                    <div class=control-group>
+                                        <label>Nombre:</label>
+                                        <div class=control-group>
+                                            <input class=form-control readonly= type=text value={$row->nombre} name=nombre />   
+                                        </div>
+                                    </div>
+                                    <fieldset>
+                                        <div class=control-group>
+                                            <legend>Datos de acceso</legend>
+                                            <div class=controls>
+                                                <label>Nombre de usuario:</label>
+                                                <input class=form-control readonly= type=text value={$row->nombre_usuario} name=nombreusuarios />
+                                            </div>
+                                        </div>
+                                        <div class=control-group>
+                                            <div class=controls>
+                                                <label>Rol:</label>
+                                                <input class=form-control readonly= type=text value=$roleAdministrativo name=rol />
+                                            </div>
+                                        </div>
+                                        <div class=controls>
+                                            <label>Contraseña:</label>
+                                            <input class=form-control readonly= type=text value={$row->contrasenna} name=contrasenna />
+                                        </div>
+                                    </fieldset>
+                                    </div>
+                                    <div class=panel-footer>
+                                    
+                                ";
                                 }
                                 ?>
-                                <a href="../obtenerUsers"><button class=btn-info>Atrás</button></a>
-                            </center>
-                        </div> 
-                    </div> 
-                </div> 
+                                    <a href="<?php echo base_url() ?>user/obtenerUsers"><button class="btn btn-success" type="button">Atrás</button></a>
+                                </div>
+                        </div><!--/panel-->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Acerca de</div>
+                            <div class="panel-body">
+                                Proyecto Final de Ambiente Web 1.
+                                <br><br>
+                                Universidad Técnica Nacional.
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                        <div class="panel-heading">Intengrantes</div>
+                        <div class="panel-body">
+                            Ignacio Valerio Vega
+                            <br><br>
+                            Misael Valerio Murillo
+                            <br><br>
+                            Diego Bonilla Espinoza
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
 </body>
 </html>

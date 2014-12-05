@@ -12,7 +12,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>
+                    <li class="active">
                         <a href="<?php echo base_url('user/index') ?>">Dashboard</a>
                     </li>
                     <li>
@@ -30,13 +30,13 @@
                     <li><a href="#">Opciones</a></li>
                     <li>
                         <div class="btn-group navbar-btn">
-                            <button class="btn btn-danger">Ignacio Valerio Vega</button>
-                            <button data-toggle="dropdown" class="btn btn-danger dropdown-toggle"><span class="caret"></span></button>
+                            <button class="btn btn-default">Ignacio Valerio Vega</button>
+                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Perfil</a></li>
                                 <li><a href="#">Configuración</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Cerrar sesión</a></li>
+                                <li><a href="<?php echo base_url('user/logout') ?>">Cerrar sesión</a></li>
                             </ul>
                         </div>
                     </li>
@@ -44,94 +44,55 @@
             </div><!--/.navbar-collapse -->
         </div>
     </header>
-<center>
-    <h3 class="page-header">Dashboard</h3>
-</center>
-<div class="navbar-inner">
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span3">
-                <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
 
-                    <li>
-                        <a href="<?php echo base_url('career/obtenerCarreras') ?>"><i class="icon-chevron-right"></i> Carreras</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url('student/obtenerStudents') ?>"><i class="icon-chevron-right"></i> Estudiantes</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url('user/obtenerUsers') ?>"><i class="icon-chevron-right"></i> Usuarios</a>
-                    </li>
+    <!-- Main -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <!-- Left -->
+                <strong>Mantenimientos</strong>
+                <hr>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="<?php echo base_url('user/index') ?>" title="Dashboard">Dashboard</a></li>
+                    <li><a href="<?php echo base_url('career/obtenerCarreras') ?>" title="Carreras">Carreras</a></li>
+                    <li><a href="<?php echo base_url('student/obtenerStudents') ?>" title="Estudiantes">Estudiantes</a></li>
+                    <li><a href="<?php echo base_url('user/obtenerUsers') ?>" title="Usuarios">Usuarios</a></li>
+                    <li><a href="#" title="Informacion">Información</a></li>
                 </ul>
-            </div>
-
-            <!--/span-->
-            <div class="span9" id="content">
-                <div class="row-fluid">
-                    <!-- block -->
-                    <!-- /block -->
-                </div>
-                <div class="row-fluid">
-                    <div class="span6">
-                        <!-- block -->
-                        <div class="block">
-                            <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Carreras</div>
-                                <div class="pull-right"><span class="badge badge-info">Registros: <?php echo $carreras ?></span>
-                                </div>
-                            </div>
-                            <div class="block-content collapse in">
-                                <div class="well" style="margin-top:30px;">
-                                    <button type="button" class="btn btn-large btn-block btn-primary">ir</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /block -->
+            </div><!-- /span-3 -->
+            <div class="col-md-10">
+                <!-- Right -->
+                <strong><span class="glyphicon glyphicon-dashboard"></span> Dashboard</strong>
+                <hr>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="well">Carreras registradas <span class="badge pull-right"><?php echo $carreras;?></span></div>
+                        <div class="well">Estudiantes registrados <span class="badge pull-right"><?php echo $estudiantes;?></span></div>
+                        <div class="well">Usuarios registrados <span class="badge pull-right"><?php echo $usuarios;?></span></div>
                     </div>
-                    <div class="span6">
-                        <!-- block -->
-                        <div class="block">
-                            <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Estudiantes</div>
-                                <div class="pull-right"><span class="badge badge-info">Registros: <?php echo $estudiantes ?></span>
-
-                                </div>
-                            </div>
-                            <div class="block-content collapse in">
-                                <div class="well" style="margin-top:30px;">
-                                    <button type="button" class="btn btn-large btn-block btn-primary">ir</button>
-                                </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Acerca de</div>
+                            <div class="panel-body">
+                                Proyecto Final de Ambiente Web 1.
+                                <br><br>
+                                Universidad Técnica Nacional.
                             </div>
                         </div>
-                        <!-- /block -->
+                        <div class="panel panel-default">
+                        <div class="panel-heading">Intengrantes</div>
+                        <div class="panel-body">
+                            Ignacio Valerio Vega
+                            <br><br>
+                            Misael Valerio Murillo
+                            <br><br>
+                            Diego Bonilla Espinoza
+                        </div>
                     </div>
-                </div>
-                <div class="row-fluid">
-                    <div class="span6">
-                        <!-- block -->
-                        <div class="block">
-                            <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Usuarios</div>
-                                <div class="pull-right"><span class="badge badge-info">Registros: <?php echo $usuarios ?></span>
-                                </div>
-                            </div>
-                            <div class="block-content collapse in">
-                                <div class="well" style="margin-top:30px;">
-                                    <a><button type="button" class="btn btn-large btn-block btn-primary">ir</button></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /block -->
                     </div>
                 </div>
             </div>
-            <hr>
         </div>
-        <footer>
-            <p>&copy;Universidad Técnica Nacional</p>
-        </footer>
     </div>
-
-</div>
 </body>
 </html>

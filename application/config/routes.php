@@ -38,8 +38,7 @@
 |
 */
 
-$route['user/list'] = "user/index";
-
+$route['user/login'] = "user/login";
 $route['default_controller'] = "user/login";
 $route['404_override'] = '';
 

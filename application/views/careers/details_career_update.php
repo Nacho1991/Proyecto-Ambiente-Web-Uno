@@ -13,7 +13,7 @@
                 <li>
                     <a href="<?php echo base_url('user/index') ?>">Dashboard</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="<?php echo base_url('career/obtenerCarreras') ?>">Carreras</a>
                 </li>
                 <li>
@@ -28,13 +28,13 @@
                 <li><a href="#">Opciones</a></li>
                 <li>
                     <div class="btn-group navbar-btn">
-                        <button class="btn btn-danger">Ignacio Valerio Vega</button>
-                        <button data-toggle="dropdown" class="btn btn-danger dropdown-toggle"><span class="caret"></span></button>
+                        <button class="btn btn-default">Ignacio Valerio Vega</button>
+                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="#">Perfil</a></li>
                             <li><a href="#">Configuración</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Cerrar sesión</a></li>
+                            <li><a href="<?php echo base_url('user/logout') ?>">Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </li>
@@ -42,42 +42,87 @@
         </div><!--/.navbar-collapse -->
     </div>
 </header>
-<center>
-    <h3 class="page-header">Registrar carrera</h3>
-</center>
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-
-            <br>
-            <br>
-
-            <!--Tabla que contiene todos los registros de los usuarios de la base de datos!-->
-
-            <div id="divLista" class="container"> 
-                <div class="row"> 
-                    <div class="col-xs-12"> 
-                        <div class="table-responsive">
-                            <form action="<?php echo base_url('career/update') ?>" method="post" accept-charset="utf-8">
-                                <center>
-                                    <?php
-                                    foreach ($detalles->result()as $row) {
-                                        echo
-                                        "
-                                                            <label>N° registro: <input class=form-control readonly= type=text value={$row->id_carreras} name=id /></label> 
-                                                            <label>Código de la carrera:<input class=form-control typetext value={$row->codigo_carrera} name=codigo /></label>
-                                                            <label>Nombre: <input class=form-control type=text value={$row->nombre} name=nombre /></label>";
-                                    }
-                                    ?>
-                                    <input type="submit" class="btn btn-danger" value="Actualizar">
-                                </center>
-                            </form>
-                            <center>
-                                <a href="../obtenerCarreras"><button class="btn btn-success">Atrás</button></a>
-                            </center>
-                        </div> 
-                    </div> 
-                </div> 
+        <div class="col-md-2">
+            <!-- Izquierdo -->
+            <strong>Mantenimientos</strong>
+            <hr>
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="<?php echo base_url('user/index') ?>" title="Dashboard">Dashboard</a></li>
+                <li class="active"><a href="<?php echo base_url('career/obtenerCarreras') ?>" title="Carreras">Carreras</a></li>
+                <li><a href="<?php echo base_url('student/obtenerStudents') ?>" title="Estudiantes">Estudiantes</a></li>
+                <li><a href="<?php echo base_url('user/obtenerUsers') ?>" title="Usuarios">Usuarios</a></li>
+                <li><a href="#" title="Informacion">Información</a></li>
+            </ul>
+        </div><!-- /span-3 -->
+        <div class="col-md-10">
+            <!-- Right -->
+            <strong><span class="glyphicon glyphicon-dashboard"></span> Actualizar carrera</strong>
+            <hr>
+            <div class="row">
+                <div class="col-md-9">
+                    <form action="<?php echo base_url('career/update') ?>" method="post" accept-charset="utf-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    Formulario
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <?php
+                                foreach ($detalles->result()as $row) {
+                                    echo
+                                    "<div class=control-group>
+                                        <label>N° registro:</label> 
+                                            <div class=control-group>
+                                                <input class=form-control readonly= type=text value={$row->id_carreras} name=id />
+                                            </div>             
+                                    </div>
+                                    <div class=control-group>
+                                        <label>Código de carrera:</label>
+                                            <div class=control-group>
+                                                <input class=form-control type=text value={$row->codigo_carrera} name=codigo />
+                                            </div>
+                                    </div>
+                                    <div class=control-group>
+                                        <label>Nombre:</label>
+                                        <div class=control-group>
+                                            <input class=form-control type=text value={$row->nombre} name=nombre />   
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class=panel-footer>
+                                    
+                                ";
+                                }
+                                ?>
+                                <input type="submit" class="btn btn-danger" value="Actualizar">
+                                <a href="<?php echo base_url() ?>career/obtenerCarreras"><button class="btn btn-success">Atrás</button></a>
+                            </div>
+                        </div><!--/panel-->
+                    </form>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Acerca de</div>
+                        <div class="panel-body">
+                            Proyecto Final de Ambiente Web 1.
+                            <br><br>
+                            Universidad Técnica Nacional.
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Intengrantes</div>
+                        <div class="panel-body">
+                            Ignacio Valerio Vega
+                            <br><br>
+                            Misael Valerio Murillo
+                            <br><br>
+                            Diego Bonilla Espinoza
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

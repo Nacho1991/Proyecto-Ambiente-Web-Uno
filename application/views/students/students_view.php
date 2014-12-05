@@ -28,13 +28,13 @@
                 <li><a href="#">Opciones</a></li>
                 <li>
                     <div class="btn-group navbar-btn">
-                        <button class="btn btn-danger">Ignacio Valerio Vega</button>
-                        <button data-toggle="dropdown" class="btn btn-danger dropdown-toggle"><span class="caret"></span></button>
+                        <button class="btn btn-default">Ignacio Valerio Vega</button>
+                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="#">Perfil</a></li>
                             <li><a href="#">Configuración</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Cerrar sesión</a></li>
+                            <li><a href="<?php echo base_url('user/logout') ?>">Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </li>
@@ -42,81 +42,97 @@
         </div><!--/.navbar-collapse -->
     </div>
 </header>
-<center>
-    <h3 class="page-header">Estudiantes</h3>
-</center>
+<!-- Principal -->
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <div class="col-xs-6">
-                <div class="input-group">
-                    <span class="input-group-btn">
-                        <a href="../student/detallesInsertar"><button class="btn btn-primary">Nuevo</button></a>
-                    </span>
+        <div class="col-md-2">
+            <!-- Izquierdo -->
+            <strong>Mantenimientos</strong>
+            <hr>
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="<?php echo base_url('user/index') ?>" title="Dashboard">Dashboard</a></li>
+                <li><a href="<?php echo base_url('career/obtenerCarreras') ?>" title="Carreras">Carreras</a></li>
+                <li class="active"><a href="<?php echo base_url('student/obtenerStudents') ?>" title="Estudiantes">Estudiantes</a></li>
+                <li><a href="<?php echo base_url('user/obtenerUsers') ?>" title="Usuarios">Usuarios</a></li>
+                <li><a href="#" title="Informacion">Información</a></li>
+            </ul>
+        </div><!-- /span-3 -->
+        <div class="col-md-10">
+            <!-- Right -->
+            <strong><span class="glyphicon glyphicon-dashboard"></span> Lista de estudiantes</strong>
+            <hr>
+            <div class="row">
+                <div class="col-md-9">
+                    <a href="<?php echo base_url() ?>student/detallesInsertar">
+                        <button class="btn btn-primary">Registrar estudiante</button>
+                    </a>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Estudiantes registrados</div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>Cédula</th> 
+                                    <th>Nombre</th> 
+                                    <th>Carrera</th> 
+                                    <th>Inglés</th>
+                                    <th>Skills</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if ($estudiantes != NULL) {
+                                    foreach ($estudiantes->result()as $row) {
+                                        echo
+                                        "<tr>
+                                            <td>{$row->cedula}</td>
+                                            <td>{$row->nombre}</td>
+                                            <td>{$row->carrera_fk}</td>
+                                            <td>{$row->nivel_ingles}</td>
+                                            <td>{$row->skill_fk}</td>
+                                            <td> 
+                                                <a href=../student/detallesEliminar/{$row->id_estudiante}/{$row->cedula}><button class=btn-danger type=button>Eliminar</button></a>
+                                                <a href=../student/detallesModificar/{$row->id_estudiante}/{$row->cedula}><button class=btn-success type=button>Modificar</button></a>
+                                                <a href=../student/detalles/{$row->id_estudiante}/{$row->cedula}><button class=btn-info type=button>Detalles</button></a>
+                                            </td>
+                                        </tr>";
+                                    }
+                                } else {
+                                    echo"<tr>
+                                            <td colspan=7 align=center>
+                                                No hay registros
+                                            </td>
+                                        </tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Acerca de</div>
+                        <div class="panel-body">
+                            Proyecto Final de Ambiente Web 1.
+                            <br><br>
+                            Universidad Técnica Nacional.
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Intengrantes</div>
+                        <div class="panel-body">
+                            Ignacio Valerio Vega
+                            <br><br>
+                            Misael Valerio Murillo
+                            <br><br>
+                            Diego Bonilla Espinoza
+                        </div>
+                    </div>
                 </div>
             </div>
-            <br>
-            <br>
-            <div id="divLista" class="container"> 
-                <div class="row"> 
-                    <div class="col-xs-12"> 
-                        <div class="table-responsive"> 
-                            <table id="tblTablaCarreras" class="table table table-hover table-bordered table-striped table-condensed"> 
-                                <thead> 
-                                    <tr class="bg-success"> 
-                                        <th>N° registro</th> 
-                                        <th>Cédula</th> 
-                                        <th>Nombre</th> 
-                                        <th>Carrera</th> 
-                                        <th>Nivel de inglés</th>
-                                        <th>Habilidades</th>
-                                        <th>Opciones</th>
-                                    </tr>
-                                </thead> 
-                                <tbody>
-                                    <?php
-                                    if ($estudiantes != NULL) {
-                                        foreach ($estudiantes->result()as $row) {
-                                            echo
-                                            "<tr>
-                                                                    <td>{$row->id_estudiante}</td>
-                                                                    <td>{$row->cedula}</td>
-                                                                    <td>{$row->nombre}</td>
-                                                                    <td>{$row->carrera_fk}</td>
-                                                                    <td>{$row->nivel_ingles}</td>
-                                                                    <td>{$row->skill_fk}</td>
-                                                                        
-                                                                    <td> 
-                                                                    
-                                                                         <a href=../student/detallesEliminar/{$row->id_estudiante}/{$row->cedula}><button class=btn-danger type=button>Eliminar</button></a>
-                                                                         <a href=../student/detallesModificar/{$row->id_estudiante}/{$row->cedula}><button class=btn-success type=button>Modificar</button></a>
-                                                                         <a href=../student/detalles/{$row->id_estudiante}/{$row->cedula}><button class=btn-info type=button>Detalles</button></a>
-                                                                    </td>
-                                                                </tr>";
-                                        }
-                                    } else {
-                                        echo"<tr>
-                                                                 <td colspan=7 align=center>
-                                                                    No hay registros
-                                                                    </td>
-                                                                </tr>";
-                                    }
-                                    ?>
-                                </tbody>
-                            </table> 
-                        </div> 
-                    </div> 
-                </div> 
-            </div>
-
-            <!--Este modelo se encarga de registrar a los estudiantes en la base de datos!-->
-
         </div>
     </div>
-</div>
-</div>
-</div>
-</div>
 </div>
 </body>
 </html>

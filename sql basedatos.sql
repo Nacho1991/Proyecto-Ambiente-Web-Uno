@@ -31,6 +31,7 @@ create table skills(
 	descripcion varchar (50) not null
 );
 use Universidad;
+UPDATE skills SET descripcion = 'Trabajo en equipo' WHERE id_skills = 1;
 INSERT INTO skills(descripcion)VALUES('VRUTO');
 SELECT*FROM skills;
 drop table skills;
