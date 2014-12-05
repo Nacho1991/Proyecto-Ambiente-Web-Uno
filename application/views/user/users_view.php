@@ -72,7 +72,8 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>N°</th> 
+                                        
+                                        
                                         <th>Cédula</th> 
                                         <th>Nombre</th> 
                                         <th>Nombre usuario</th> 
@@ -96,7 +97,7 @@
                                             }
                                             echo
                                             "<tr>
-                                                                    <td>{$row->id_usuarios}</td>
+                                                                    
                                                                     <td>{$row->cedula}</td>
                                                                     <td>{$row->nombre}</td>
                                                                     <td>{$row->nombre_usuario}</td>

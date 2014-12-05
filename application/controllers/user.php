@@ -18,6 +18,7 @@ class User extends CI_Controller {
             $this->load->view('user/login');
         } else {
             $contador = array(
+                'user_info' =>$user,
                 'usuarios' => $this->user->contarRegistrosUsuarios(),
                 'estudiantes' => $this->user->contarRegistrosEstudiantes(),
                 'carreras' => $this->user->contarRegistrosCarreras());
@@ -123,6 +124,7 @@ class User extends CI_Controller {
         if ($user) {
             $this->session->set_userdata('user', $user);
             $contador = array(
+                'user_info' => $user,
                 'usuarios' => $this->user->contarRegistrosUsuarios(),
                 'estudiantes' => $this->user->contarRegistrosEstudiantes(),
                 'carreras' => $this->user->contarRegistrosCarreras()

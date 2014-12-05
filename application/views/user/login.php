@@ -10,11 +10,11 @@
                     <form class="form-horizontal" action="<?php echo base_url('user/authenticate') ?>" method="post" accept-charset="utf-8">
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" class="form-control" name="username" value="" placeholder="username or email">                                        
+                            <input type="text" class="form-control" name="username" value="" placeholder="Nombre de usuario">                                        
                         </div>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input type="password" class="form-control" name="password" placeholder="password">
+                            <input type="password" class="form-control" name="password" placeholder="Contraseña">
                         </div>
                         <div style="margin-top:10px" class="form-group">
                             <!-- Button -->

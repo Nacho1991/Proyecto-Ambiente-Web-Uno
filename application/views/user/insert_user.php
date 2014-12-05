@@ -106,7 +106,7 @@
                                     <div class="control-group">
                                         <label>Rol:</label>
                                         <div class="controls">
-                                            <select class="form-control">
+                                            <select class="form-control" name="roles">
                                                 <?php
                                                 foreach ($roles->result()as $row) {
                                                     echo "<option value=$row->id_roles>$row->tipo_usuario</option>";

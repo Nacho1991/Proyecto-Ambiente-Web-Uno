@@ -61,7 +61,7 @@
         </div><!-- /span-3 -->
         <div class="col-md-10">
             <!-- Right -->
-            <a href="#"><strong><span class="glyphicon glyphicon-dashboard"></span> Registrar estudiante</strong></a>
+            <strong><span class="glyphicon glyphicon-dashboard"></span> Registrar estudiante</strong>
             <hr>
             <div class="row">
                 <div class="col-md-9">
@@ -73,11 +73,13 @@
                                 </div>
                             </div>
                             <div class="panel-body">
-
                                 <div class="control-group">
                                     <label>Cédula:</label>
                                     <div class="controls">
                                         <input placeholder="Cédula del estudiante" class="form-control" type="text" name="cedula" />
+                                        <a href="<?php echo base_url() ?>upload">
+                                            <button type="button" class="btn btn-success">Cargar foto</button>
+                                        </a>
                                     </div>
                                 </div>      
                                 <div class="control-group">
@@ -104,9 +106,9 @@
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label>Carrera:</label>
+                                    <label>Habilidades:</label>
                                     <div class="controls">
-                                        <select class="form-control" name="carreras" id="carreras">
+                                        <select class="form-control" name="habilidades" id="habilidades">
                                             <?php
                                             if ($skills != NULL) {
                                                 foreach ($skills->result()as $row) {
@@ -120,7 +122,7 @@
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label>Carrera:</label>
+                                    <label>Nivel de inglés:</label>
                                     <div class="controls">
                                         <select class="form-control" name="ingles" id="ingles">
                                             <option value="Básico">Básico</option>
@@ -164,7 +166,7 @@
                                 <div class="control-group">
                                     <label>Curso</label>
                                     <div class="controls">
-                                        <select class="form-control">
+                                        <select class="form-control" name="cursos">
                                             <?php
                                             if ($cursos != NULL) {
                                                 foreach ($cursos->result()as $row) {
