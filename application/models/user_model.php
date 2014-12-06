@@ -31,13 +31,16 @@ class User_model extends CI_Model {
     function contarRegistrosUsuarios() {
         return $rowcount = $this->db->count_all('usuarios');
     }
-    function contarRegistrosEstudiantes(){
+
+    function contarRegistrosEstudiantes() {
         return $rowcount = $this->db->count_all('estudiante');
     }
-    function contarRegistrosCarreras(){
-        return $rowCount=$this->db->count_all('carreras');
+
+    function contarRegistrosCarreras() {
+        return $rowCount = $this->db->count_all('carreras');
     }
-            function update($id, $cedula, $nombre, $nombreUsuario, $contrasenna, $role) {
+
+    function update($id, $cedula, $nombre, $nombreUsuario, $contrasenna, $role) {
         $data = array(
             'nombre' => $nombre,
             'cedula' => $cedula,

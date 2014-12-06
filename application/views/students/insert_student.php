@@ -151,16 +151,24 @@
                                 <div class="control-group">
                                     <label>Tecnologías</label>
                                     <div class="controls">
-                                        <?php
-                                        if ($tecnologias != NULL) {
-                                            foreach ($tecnologias->result()as $row) {
-                                                echo
-                                                "<input type=checkbox value=$row->id_tecnologias /> $row->nombre";
+                                        <select id="example-getting-started" name="tecnologias[]" multiple="multiple">
+                                            <?php
+                                            if ($tecnologias != NULL) {
+                                                foreach ($tecnologias->result()as $row) {
+                                                    echo
+                                                    "<option value=$row->id_tecnologias /> $row->nombre";
+                                                }
+                                            } else {
+                                                echo "<label>Sin tecnologias registradas</label>";
                                             }
-                                        } else {
-                                            echo "<label>Sin tecnologias registradas</label>";
-                                        }
-                                        ?>
+                                            ?>
+
+                                        </select>
+                                        <script type="text/javascript">
+                                            $(document).ready(function () {
+                                                $('#example-getting-started').multiselect();
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                                 <div class="control-group">

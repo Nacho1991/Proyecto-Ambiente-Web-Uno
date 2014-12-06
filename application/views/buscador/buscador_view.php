@@ -9,7 +9,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="<?php echo base_url('user/authenticate') ?>">Iniciar sesión</a></li>
+                    <li>
+                        <a href="<?php echo base_url('user/authenticate') ?>">Iniciar sesión</a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -21,12 +23,16 @@
                     <div class="panel-title">Buscador</div>
                 </div>     
                 <div class="panel-body" >
+                    <center>
+                        <img src="<?php echo base_url(); ?>Images/Logo.png" class="img-rounded">
+                        <br><br>
+                    </center>
                     <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                    <form class="form-horizontal" action="" method="post" accept-charset="utf-8">
+                    <form class="form-horizontal" action="<?php echo base_url() ?>buscador/resultados" method="post" accept-charset="utf-8">
                         <div class="input-group">
-                            <input type="text" class="form-control">
+                            <input name="filtro" type="text" class="form-control">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Buscar</button>
+                                <input class="btn btn-default" type="submit" value="Buscar"/>
                             </span>
                         </div><!-- /input-group --> 
                     </form>     
@@ -34,7 +40,8 @@
                 <div class="panel-footer">
                     <fieldset>
                         <legend>Opciones de búsqueda</legend>
-                        <label>Habilidades: <input type="checkbox"></label>
+                        <input type="radio" name="opciones" value="habilidades">  Habilidades<br>
+                        <input type="radio" name="opciones" value="tecnologias">  Tecnologias
                     </fieldset>
                 </div>
             </div>  

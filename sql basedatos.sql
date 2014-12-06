@@ -11,6 +11,7 @@ create table estudiante (
 	FOREIGN KEY (carrera_fk) REFERENCES carreras(codigo_carrera) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY (skill_fk) REFERENCES skills(id_skills) ON UPDATE CASCADE ON DELETE CASCADE
 );
+UPDATE estudiante SET cedula = '206910083',nombre='Misael Valerio Vega',carrera_fk='ISW',nivel_ingles='Avanzado', skill_fk=1 WHERE id_estudiante = 1;
 INSERT INTO estudiante (cedula,nombre,carrera_fk,nivel_ingles,skill_fk)
 VALUES('206910083','Ignacio Valerio Vega','ISW','Basico',1);
 DROP TABLE estudiante;
@@ -24,6 +25,7 @@ create table carreras(
 UPDATE carreras SET codigo_carrera = 'ISW', nombre = 'Ingenieria en Software' WHERE id_carreras = 7;
 INSERT INTO carreras (codigo_carrera,nombre)VALUES('ISW','Ingenieria en Software');
 SELECT * FROM carreras;
+USE Universidad;
 Drop table carreras;
 
 create table skills(

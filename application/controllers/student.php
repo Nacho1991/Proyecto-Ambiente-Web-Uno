@@ -172,9 +172,8 @@ class Student extends CI_Controller {
             $cursos = $this->input->post('cursos');
             $descripcion = $this->input->post('descripcion');
             $calificacion = $this->input->post('calificacion');
-            $tecnologias = "PHP, Ruby on Rails, C#";
+            $tecnologias="";
             $fecha = $this->input->post('fecha');
-
             $this->student->insertarProyecto($cedula, $cursos, $duracion, $descripcion, $calificacion, $tecnologias, $fecha);
 
             //Datos del profesor

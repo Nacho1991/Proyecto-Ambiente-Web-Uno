@@ -68,8 +68,8 @@
                 <div class="row">
                     <div class="col-md-9">
                         <form class="form form-vertical"  action="<?php echo base_url('user/actualizar') ?>" method="post" accept-charset="utf-8">
-                        <div class="panel panel-default">
-                            
+                            <div class="panel panel-default">
+
                                 <div class="panel-heading">
                                     <div class="panel-title">
                                         Datos personales
@@ -124,7 +124,7 @@
                                     <div class="control-group">
                                         <label>Rol:</label>
                                         <div class="controls">
-                                            <select class="form-control">
+                                            <select class="form-control" name="rol">
                                                 <?php
                                                 foreach ($roles->result()as $row) {
                                                     echo "<option value=$row->id_roles>$row->tipo_usuario</option>";
@@ -139,8 +139,8 @@
                                     <input type="submit" value="Actualizar" name="btnActualizar" class="btn btn-info">
                                     <a href="<?php echo base_url() ?>user/obtenerUsers"><button class="btn btn-success" type="button">Atrás</button></a>
                                 </div>
-                            
-                        </div><!--/panel-->
+
+                            </div><!--/panel-->
                         </form>
                     </div>
                     <div class="col-md-3">
@@ -153,15 +153,15 @@
                             </div>
                         </div>
                         <div class="panel panel-default">
-                        <div class="panel-heading">Intengrantes</div>
-                        <div class="panel-body">
-                            Ignacio Valerio Vega
-                            <br><br>
-                            Misael Valerio Murillo
-                            <br><br>
-                            Diego Bonilla Espinoza
+                            <div class="panel-heading">Intengrantes</div>
+                            <div class="panel-body">
+                                Ignacio Valerio Vega
+                                <br><br>
+                                Misael Valerio Murillo
+                                <br><br>
+                                Diego Bonilla Espinoza
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>

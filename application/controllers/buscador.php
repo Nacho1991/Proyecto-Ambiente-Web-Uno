@@ -16,4 +16,23 @@ class Buscador extends CI_Controller {
         $this->load->view('buscador/buscador_view');
     }
 
+    public function resultados() {
+        $pFiltro = $this->input->post('filtro');
+        $data = array(
+            'resultados' => $this->search->like($pFiltro)
+        );
+        $this->load->view('plantillas/header');
+        $this->load->view('buscador/buscador_result_view', $data);
+    }
+
+    public function detalles($pCedula) {
+        $detalles = array(
+            'estudiante' => $this->search->obtenerEstudiante($pCedula),
+            'comentarios' => $this->search->obtenerComentarios($pCedula),
+            'proyectos' => $this->search->obtenerProyectos($pCedula)
+        );
+        $this->load->view('plantillas/header');
+        $this->load->view('buscador/buscador_details_view', $detalles);
+    }
+
 }
