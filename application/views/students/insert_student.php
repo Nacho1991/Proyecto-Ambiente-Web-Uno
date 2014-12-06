@@ -151,12 +151,12 @@
                                 <div class="control-group">
                                     <label>Tecnologías</label>
                                     <div class="controls">
-                                        <select id="example-getting-started" name="tecnologias[]" multiple="multiple">
+                                        <select class="form-control" id="example-getting-started" name="tecnologias[]" multiple="multiple">
                                             <?php
                                             if ($tecnologias != NULL) {
                                                 foreach ($tecnologias->result()as $row) {
                                                     echo
-                                                    "<option value=$row->id_tecnologias /> $row->nombre";
+                                                    "<option value=$row->nombre /> $row->nombre";
                                                 }
                                             } else {
                                                 echo "<label>Sin tecnologias registradas</label>";

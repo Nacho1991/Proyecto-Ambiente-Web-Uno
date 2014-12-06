@@ -18,8 +18,10 @@ class Buscador extends CI_Controller {
 
     public function resultados() {
         $pFiltro = $this->input->post('filtro');
+        $pTipoBusqueda = $this->input->post('opcionesBusqueda');
         $data = array(
-            'resultados' => $this->search->like($pFiltro)
+            'tipoBusqueda' => $pTipoBusqueda,
+            'resultados' => $this->search->like($pFiltro, $pTipoBusqueda)
         );
         $this->load->view('plantillas/header');
         $this->load->view('buscador/buscador_result_view', $data);

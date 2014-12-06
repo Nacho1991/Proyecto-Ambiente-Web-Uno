@@ -16,36 +16,39 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </header>
-    <div class="container">    
-        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
-            <div class="panel panel-info" >
-                <div class="panel-heading">
-                    <div class="panel-title">Buscador</div>
-                </div>     
-                <div class="panel-body" >
-                    <center>
-                        <img src="<?php echo base_url(); ?>Images/Logo.png" class="img-rounded">
-                        <br><br>
-                    </center>
-                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                    <form class="form-horizontal" action="<?php echo base_url() ?>buscador/resultados" method="post" accept-charset="utf-8">
+    <form class="form-horizontal" action="<?php echo base_url() ?>buscador/resultados" method="post" accept-charset="utf-8">
+        <div class="container">    
+            <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+                <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="panel-title">Buscador</div>
+                    </div>     
+                    <div class="panel-body" >
+                        <center>
+                            <img src="<?php echo base_url(); ?>Images/Logo.png" class="img-rounded">
+                            <br><br>
+                        </center>
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
                         <div class="input-group">
                             <input name="filtro" type="text" class="form-control">
                             <span class="input-group-btn">
                                 <input class="btn btn-default" type="submit" value="Buscar"/>
                             </span>
                         </div><!-- /input-group --> 
-                    </form>     
-                </div>
-                <div class="panel-footer">
-                    <fieldset>
-                        <legend>Opciones de búsqueda</legend>
-                        <input type="radio" name="opciones" value="habilidades">  Habilidades<br>
-                        <input type="radio" name="opciones" value="tecnologias">  Tecnologias
-                    </fieldset>
-                </div>
-            </div>  
+                    </div>
+                    <div class="panel-footer">
+                        <fieldset>
+                            <legend>Opciones de búsqueda</legend>
+                            <select class="form-control" id="example-getting-started" name="opcionesBusqueda">
+                                <option value="habilidades">Habilidades</option>
+                                <option value="tecnologia">Tecnologias</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                </div>  
+            </div>
         </div>
-    </div>
+    </form>  
 </body>
 </html>

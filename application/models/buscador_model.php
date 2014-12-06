@@ -6,11 +6,16 @@ class Buscador_model extends CI_Model {
         parent::__construct();
     }
 
-    function like($pFiltro) {
-        // Genera: SELECT * FROM proyectos LIKE tecnologias_fk = '%$pFiltro%'
-        $this->db->like("tecnologias_fk", $pFiltro);
-        $query = $this->db->get("proyectos");
-        return $query;
+    function like($pFiltro, $pTipoBusqueda) {
+        if ($pTipoBusqueda === 'habilidades') {
+             // Genera: SELECT * FROM proyectos LIKE tecnologias_fk = '%$pFiltro%'
+            $this->db->like("skill_fk", $pFiltro);
+            return $query = $this->db->get("estudiante");
+        } else if ($pTipoBusqueda === 'tecnologia') {
+            // Genera: SELECT * FROM proyectos LIKE tecnologias_fk = '%$pFiltro%'
+            $this->db->like("tecnologias_fk", $pFiltro);
+            return $query = $this->db->get("proyectos");
+        }
     }
 
     function obtenerEstudiante($pCedula) {
@@ -22,6 +27,7 @@ class Buscador_model extends CI_Model {
             return null;
         }
     }
+
     function obtenerComentarios($pCedula) {
         $this->db->where("estudiante_fk", $pCedula);
         $query = $this->db->get('comentarios');
@@ -31,6 +37,7 @@ class Buscador_model extends CI_Model {
             return false;
         }
     }
+
     function obtenerProyectos($pCedula) {
         $this->db->where("estudiante_fk", $pCedula);
         $query = $this->db->get('proyectos');
@@ -39,20 +46,6 @@ class Buscador_model extends CI_Model {
         } else {
             return false;
         }
-    }
-
-    function join() {
-        //Para unir dos o más tablas con “join” también se 
-        //podrá realizar de una forma sencilla, como lo 
-        //muestro a continuación:
-
-        $this->db->select('*');
-        $this->db->from('blogs');
-        $this->db->join('comments', 'comments.id = blogs.id');
-        $query = $this->db->get();
-//El cual dará como resultado la siguiente consulta:
-//SELECT * FROM blogs
-//JOIN comments ON comments.id = blogs.id
     }
 
 }
