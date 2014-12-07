@@ -155,7 +155,7 @@
                         </table>
                         <div class="panel-footer">
                             <center>
-                                <a href="<?php echo base_url() ?>buscador/resultados"><button type="button" class="btn btn-success">Atrás</button></a>
+                                <a href="../resultados"><button type="button" class="btn btn-success">Atrás</button></a>
                             </center>
                         </div>
                     </div>

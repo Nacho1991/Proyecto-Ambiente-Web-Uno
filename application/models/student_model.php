@@ -28,6 +28,28 @@ class Student_model extends CI_Model {
         }
     }
 
+    function insertComment($cedula, $nombreProfesor, $fechaProfesor, $comentario) {
+        $data = array(
+            'estudiante_fk' => $cedula,
+            'nombre_profesor' => $nombreProfesor,
+            'fecha' => $fechaProfesor,
+            'comentario' => $comentario
+        );
+        $this->db->insert('comentarios', $data);
+    }
+
+    function insertProyect($cedula, $cursos, $duracion, $descripcion, $calificacion, $tecnologias, $fecha) {
+        $data = array(
+            'estudiante_fk' => $cedula,
+            'curso_fk' => $cursos,
+            'duracion' => $duracion,
+            'tecnologias_fk' => $tecnologias,
+            'descripcion' => $descripcion,
+            'calificacion' => $calificacion,
+            'fecha' => $fecha);
+        $this->db->insert('proyectos', $data);
+    }
+
     function delete($cedula) {
         $data = array(
             'cedula' => $cedula

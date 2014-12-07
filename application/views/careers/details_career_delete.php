@@ -59,7 +59,7 @@
         </div><!-- /span-3 -->
         <div class="col-md-10">
             <!-- Right -->
-            <strong><span class="glyphicon glyphicon-dashboard"></span> Detalles de la carrera</strong>
+            <strong><span class="glyphicon glyphicon-dashboard"></span> Eliminar carrera</strong>
             <hr>
             <div class="row">
                 <div class="col-md-9">

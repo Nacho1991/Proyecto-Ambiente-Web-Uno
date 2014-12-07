@@ -30,7 +30,7 @@
                     <li><a href="#">Opciones</a></li>
                     <li>
                         <div class="btn-group navbar-btn">
-                            <button class="btn btn-default">Ignacio Valerio</button>
+                            <button class="btn btn-default">Ignacio Valerio Vega</button>
                             <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Perfil</a></li>

@@ -147,7 +147,15 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                Comentarios realizados
+                                Comentarios realizados 
+                                <span class="pull-right">
+                                    <?php
+                                    foreach ($detalles->result()as $row) {
+                                        echo"<a href=" . base_url() .
+                                        "student/comment/{$row->id_estudiante}>Realizar comentario</a>";
+                                    }
+                                    ?>
+                                </span>
                             </div>
                         </div>
                         <table class="table table-striped">
@@ -186,6 +194,13 @@
                         <div class="panel-heading">
                             <div class="panel-title">
                                 Proyectos asociados
+                                <span class="pull-right">
+                                    <?php
+                                    foreach ($detalles->result()as $row) {
+                                        echo"<a href=" . base_url()."student/proyecto/{$row->id_estudiante}>Asociar proyecto</a>";
+                                    }
+                                    ?>
+                                </span>
                             </div>
                         </div>
                         <table class="table table-striped">

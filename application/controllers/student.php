@@ -152,6 +152,79 @@ class Student extends CI_Controller {
         }
     }
 
+    public function proyecto($pId) {
+        $user = $this->session->userdata('user');
+        if (!$user) {
+            $this->load->view('plantillas/header');
+            $this->load->view('user/login');
+        } else {
+            $data = array(
+                'detalles' => $this->student->detalles($pId),
+                'tecnologias' => $this->student->obtenerTecnologias(),
+                'cursos' => $this->student->obtenerCursos()
+            );
+            $this->load->view('plantillas/header');
+            $this->load->view('students/student_proyect', $data);
+        }
+    }
+    public function insertProyecto(){
+        //Validamos si la sesión esta iniciada
+        $user = $this->session->userdata('user');
+        if (!$user) {
+            $this->load->view('plantillas/header');
+            $this->load->view('user/login');
+        } else {
+            $id = $this->input->post('id');
+            $cedula = $this->input->post('cedula');
+            //Datos del proyecto
+            $duracion=$this->input->post('duracion');
+            $list = $this->input->post('tecnologias');
+            $tecnologias = implode(", ", $list);
+            $cursos=$this->input->post('cursos');
+            $descripcion=$this->input->post('descripcion');
+            $fecha=$this->input->post('fecha');
+            $calificacion=$this->input->post('calificacion');
+            //Hacemos el insert en la base de datos
+            $this->student->insertProyect($cedula, $cursos, $duracion, $descripcion, $calificacion, $tecnologias, $fecha);
+            //Re direccionamos y refrescamos la pagina con los parametros necesarios
+            redirect("student/detallesModificar/" . $id . "/" . $cedula, "refresh");
+        }
+    }
+
+    public function comment($pId) {
+        $user = $this->session->userdata('user');
+        if (!$user) {
+            $this->load->view('plantillas/header');
+            $this->load->view('user/login');
+        } else {
+            $data = array(
+                'detalles' => $this->student->detalles($pId),
+            );
+            $this->load->view('plantillas/header');
+            $this->load->view('students/student_comment', $data);
+        }
+    }
+
+    public function insertComment() {
+        //Validamos si la sesión ya esta iniciada
+        $user = $this->session->userdata('user');
+        if (!$user) {
+            $this->load->view('plantillas/header');
+            $this->load->view('user/login');
+        } else {
+            $id = $this->input->post('id');
+            $cedula = $this->input->post('cedula');
+            //Datos del comentario
+            $nombreProfesor = $this->input->post('nombreProfesor');
+            $fechaProfesor = $this->input->post('fechaProfesor');
+            $comentario = $this->input->post('comentarioProfesor');
+            //Hacemos el insert en la base de datos
+            $this->student->insertComment($cedula, $nombreProfesor, $fechaProfesor, $comentario);
+            //Re direccionamos y le enviamos los parametros necesarios
+            redirect("student/detallesModificar/" . $id . "/" . $cedula, "refresh");
+        }
+    }
+
     public function insert() {
         $user = $this->session->userdata('user');
         if (!$user) {

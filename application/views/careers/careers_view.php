@@ -60,7 +60,7 @@
         </div><!-- /span-3 -->
         <div class="col-md-10">
             <!-- Right -->
-            <strong><span class="glyphicon glyphicon-dashboard"></span> Lista de usuarios</strong>
+            <strong><span class="glyphicon glyphicon-dashboard"></span> Lista de carreras</strong>
             <hr>
             <div class="row">
                 <div class="col-md-9">

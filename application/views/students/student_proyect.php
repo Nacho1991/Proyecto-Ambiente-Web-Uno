@@ -61,80 +61,12 @@
         </div><!-- /span-3 -->
         <div class="col-md-10">
             <!-- Right -->
-            <strong><span class="glyphicon glyphicon-dashboard"></span> Registrar estudiante</strong>
+            <strong><span class="glyphicon glyphicon-dashboard"></span> Registrar proyecto</strong>
             <hr>
             <div class="row">
                 <div class="col-md-9">
-                    <form class="form-vertical" action="<?php echo base_url('student/insert') ?>" method="post" accept-charset="utf-8">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    Datos del estudiante
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <div class="control-group">
-                                    <label>Cédula:</label>
-                                    <div class="controls">
-                                        <input placeholder="Cédula del estudiante" class="form-control" type="text" name="cedula" />
-                                        <a href="<?php echo base_url() ?>upload">
-                                            <button type="button" class="btn btn-success">Cargar foto</button>
-                                        </a>
-                                    </div>
-                                </div>      
-                                <div class="control-group">
-                                    <label>Nombre:</label>
-                                    <div class="controls">
-                                        <input placeholder="Nombre y apellidos" class=form-control type="text" name="nombre" />
-                                    </div>
-                                </div>
+                    <form class="form-vertical" action="<?php echo base_url('student/insertProyecto') ?>" method="post" accept-charset="utf-8">
 
-                                <div class="control-group">
-                                    <label>Carrera:</label>
-                                    <div class="controls">
-                                        <select class="form-control" name="carreras" id="carreras">
-                                            <?php
-                                            if ($carreras != NULL) {
-                                                foreach ($carreras->result()as $row) {
-                                                    echo "<option value=$row->codigo_carrera>$row->nombre</option>";
-                                                }
-                                            } else {
-                                                echo "<option value=0>Sin carreras registradas</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label>Habilidades:</label>
-                                    <div class="controls">
-                                        <select class="form-control" name="habilidades" id="habilidades">
-                                            <?php
-                                            if ($skills != NULL) {
-                                                foreach ($skills->result()as $row) {
-                                                    echo "<option value=$row->id_skills>$row->descripcion</option>";
-                                                }
-                                            } else {
-                                                echo "<option value=0>No hay habilidades disponibles</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label>Nivel de inglés:</label>
-                                    <div class="controls">
-                                        <select class="form-control" name="ingles" id="ingles">
-                                            <option value="Básico">Básico</option>
-                                            <option value="Nivel 1">Nivel 1</option>
-                                            <option value="Nivel 2">Nivel 2</option>
-                                            <option value="Nivel 3">Nivel 3</option>
-                                            <option value="Nivel Avanzado">Nivel Avanzado</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div><!--/panel content-->
-                        </div><!--/panel-->
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div class="panel-title">
@@ -142,6 +74,35 @@
                                 </div>
                             </div>
                             <div class="panel-body">
+                                <fieldset>
+                                    <legend><h5>Datos del estudiante</h5></legend>
+                                    <?php
+                                    foreach ($detalles->result()as $row) {
+                                        echo
+                                        "<div class=control-group>
+                                        <label>N° registro:</label>
+                                            <div class=control-group>
+                                                <input class=form-control type=text value={$row->id_estudiante} name=id readonly= />
+                                            </div>
+                                    </div>
+                                            <div class=control-group>
+                                        <label>Cédula:</label>
+                                            <div class=control-group>
+                                                <input class=form-control type=text value={$row->cedula} name=cedula readonly= />
+                                            </div>
+                                    </div>
+                                    <div class=control-group>
+                                        <label>Nombre:</label>
+                                        <div class=control-group>
+                                            <input class=form-control type=text value={$row->nombre} name=nombre readonly=/>   
+                                        </div>
+                                    </div>";
+                                    }
+                                    ?>
+                                </fieldset>
+                                <br>
+                                <fieldset>
+                                    <legend><h5>Datos del proyecto</h5></legend>
                                 <div class="control-group">
                                     <label>Duración:</label>
                                     <div class="controls">
@@ -209,48 +170,16 @@
                                 <div class="control-group">
                                     <label>Calificación:</label>
                                     <div class="controls">
-                                        <input type="text" class="form-control bfh-number" name="calificacion" data-zeros="true" data-min="5" data-max="25">
+                                        <input type="text" class="form-control bfh-number" name="calificacion" data-zeros="true" data-min="5" data-max="100">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    Datos del profesor
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <div class="control-group">
-                                    <label>Nombre del profesor:</label>
-                                    <div class="controls">
-                                        <input name="nombreProfesor" type="text" id="nombreProfesor" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label>Fecha:</label>
-                                    <div class='input-group date' id='fechapicker'>
-                                        <input type='text' id="fechaProfe" name="fechaProfesor" class="form-control" />
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                    <script type="text/javascript">
-                                        $(function () {
-                                            $('#fechapicker').datetimepicker();
-                                        });
-                                    </script>
-                                </div>
-                                <div class="control-group">
-                                    <label>Comentario:</label>
-                                    <div class="controls">
-                                        <textarea class="form-control" id="comentario" name="comentarioProfesor" placeholder="Escriba aquí su comentario" rows="5"></textarea>
-                                        <h6 class="pull-right" id="count_message"></h6>
-                                    </div>
-                                </div>
+                                </fieldset>
                             </div>
                             <div class="panel-footer">
                                 <input class="btn btn-primary" type="submit" value="Registrar" name="btnRegistrar" class="btn btn-info">
-                                <a href="<?php echo base_url('student/obtenerStudents') ?>"><button type="button" class="btn btn-success">Atrás</button></a>
+                                <a href="<?php foreach ($detalles->result()as $row){
+                                       echo base_url()."student/detallesModificar/$row->id_estudiante/$row->cedula";
+                                   }?>"><button type="button" class="btn btn-success">Atrás</button></a>
                             </div>
                         </div>
                     </form>
