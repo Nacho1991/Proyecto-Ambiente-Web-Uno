@@ -18,7 +18,9 @@ class Career extends CI_Controller {
             $this->load->view('user/login');
         } else {
             $carreras = $this->career->get_all();
-            $data = array('carreras' => $carreras);
+            $data = array('user_info' => $user,
+                'carreras' => $carreras
+            );
             $this->load->view('careers/careers_view', $data);
         }
     }
@@ -31,6 +33,7 @@ class Career extends CI_Controller {
         } else {
             $careers = $this->career->get_all();
             $data = array(
+                'user_info' => $user,
                 'carreras' => $careers
             );
             $this->load->view('plantillas/header');
@@ -58,7 +61,10 @@ class Career extends CI_Controller {
             $this->load->view('plantillas/header');
             $this->load->view('user/login');
         } else {
-            $data = array('detalles' => $this->career->detalles($pId));
+            $data = array(
+                'user_info' => $user,
+                'detalles' => $this->career->detalles($pId)
+            );
             $this->load->view('plantillas/header');
             $this->load->view('/careers/details_career_view', $data);
         }
@@ -70,8 +76,9 @@ class Career extends CI_Controller {
             $this->load->view('plantillas/header');
             $this->load->view('user/login');
         } else {
+            $data['user_info']=$user;
             $this->load->view('plantillas/header');
-            $this->load->view('careers/insert_career');
+            $this->load->view('careers/insert_career',$data);
         }
     }
 
@@ -81,7 +88,10 @@ class Career extends CI_Controller {
             $this->load->view('plantillas/header');
             $this->load->view('user/login');
         } else {
-            $data = array('detalles' => $this->career->detalles($pId));
+            $data = array(
+                'user_info' => $user,
+                'detalles' => $this->career->detalles($pId)
+            );
             $this->load->view('plantillas/header');
             $this->load->view('/careers/details_career_delete', $data);
         }
@@ -93,7 +103,10 @@ class Career extends CI_Controller {
             $this->load->view('plantillas/header');
             $this->load->view('user/login');
         } else {
-            $data = array('detalles' => $this->career->detalles($pId));
+            $data = array(
+                'user_info'=>$user,
+                'detalles' => $this->career->detalles($pId)
+                    );
             $this->load->view('plantillas/header');
             $this->load->view('/careers/details_career_update', $data);
         }

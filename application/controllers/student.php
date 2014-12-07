@@ -18,6 +18,7 @@ class Student extends CI_Controller {
         } else {
             $students = $this->student->get_all();
             $data = array(
+                'user_info' => $user,
                 'estudiantes' => $students
             );
             $this->load->view('student/students_view', $data);
@@ -32,6 +33,7 @@ class Student extends CI_Controller {
         } else {
             $students = $this->student->get_all();
             $data = array(
+                'user_info' => $user,
                 'estudiantes' => $students
             );
             $this->load->view('plantillas/header');
@@ -51,6 +53,7 @@ class Student extends CI_Controller {
             $this->load->view('user/login');
         } else {
             $data = array(
+                'user_info' => $user,
                 'detalles' => $this->student->detalles($pId),
                 'skills' => $this->student->obtenerSkills(),
                 'carreras' => $this->student->obtenerCarreras(),
@@ -69,6 +72,7 @@ class Student extends CI_Controller {
             $this->load->view('user/login');
         } else {
             $habilidades = array(
+                'user_info' => $user,
                 'skills' => $this->student->obtenerSkills(),
                 'carreras' => $this->student->obtenerCarreras(),
                 'tecnologias' => $this->student->obtenerTecnologias(),
@@ -86,6 +90,7 @@ class Student extends CI_Controller {
             $this->load->view('user/login');
         } else {
             $data = array(
+                'user_info' => $user,
                 'detalles' => $this->student->detalles($pId),
                 'skills' => $this->student->obtenerSkills(),
                 'carreras' => $this->student->obtenerCarreras(),
@@ -108,6 +113,7 @@ class Student extends CI_Controller {
             $this->load->view('user/login');
         } else {
             $data = array(
+                'user_info' => $user,
                 'detalles' => $this->student->detalles($pId),
                 'skills' => $this->student->obtenerSkills(),
                 'carreras' => $this->student->obtenerCarreras(),
@@ -159,6 +165,7 @@ class Student extends CI_Controller {
             $this->load->view('user/login');
         } else {
             $data = array(
+                'user_info' => $user,
                 'detalles' => $this->student->detalles($pId),
                 'tecnologias' => $this->student->obtenerTecnologias(),
                 'cursos' => $this->student->obtenerCursos()
@@ -167,7 +174,8 @@ class Student extends CI_Controller {
             $this->load->view('students/student_proyect', $data);
         }
     }
-    public function insertProyecto(){
+
+    public function insertProyecto() {
         //Validamos si la sesión esta iniciada
         $user = $this->session->userdata('user');
         if (!$user) {
@@ -177,13 +185,13 @@ class Student extends CI_Controller {
             $id = $this->input->post('id');
             $cedula = $this->input->post('cedula');
             //Datos del proyecto
-            $duracion=$this->input->post('duracion');
+            $duracion = $this->input->post('duracion');
             $list = $this->input->post('tecnologias');
             $tecnologias = implode(", ", $list);
-            $cursos=$this->input->post('cursos');
-            $descripcion=$this->input->post('descripcion');
-            $fecha=$this->input->post('fecha');
-            $calificacion=$this->input->post('calificacion');
+            $cursos = $this->input->post('cursos');
+            $descripcion = $this->input->post('descripcion');
+            $fecha = $this->input->post('fecha');
+            $calificacion = $this->input->post('calificacion');
             //Hacemos el insert en la base de datos
             $this->student->insertProyect($cedula, $cursos, $duracion, $descripcion, $calificacion, $tecnologias, $fecha);
             //Re direccionamos y refrescamos la pagina con los parametros necesarios
@@ -198,6 +206,7 @@ class Student extends CI_Controller {
             $this->load->view('user/login');
         } else {
             $data = array(
+                'user_info' => $user,
                 'detalles' => $this->student->detalles($pId),
             );
             $this->load->view('plantillas/header');

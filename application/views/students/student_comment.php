@@ -28,7 +28,7 @@
                 <li><a href="#">Opciones</a></li>
                 <li>
                     <div class="btn-group navbar-btn">
-                        <button class="btn btn-default">Ignacio Valerio Vega</button>
+                        <button class="btn btn-default"><?php echo $user_info->nombre?></button>
                         <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="#">Perfil</a></li>
@@ -61,7 +61,7 @@
         </div><!-- /span-3 -->
         <div class="col-md-10">
             <!-- Right -->
-            <strong><span class="glyphicon glyphicon-dashboard"></span> Registrar estudiante</strong>
+            <strong><span class="glyphicon glyphicon-dashboard"></span> Registrar comentario</strong>
             <hr>
             <div class="row">
                 <div class="col-md-9">

@@ -18,7 +18,7 @@ class User extends CI_Controller {
             $this->load->view('user/login');
         } else {
             $contador = array(
-                'user_info' =>$user,
+                'user_info' => $user,
                 'usuarios' => $this->user->contarRegistrosUsuarios(),
                 'estudiantes' => $this->user->contarRegistrosEstudiantes(),
                 'carreras' => $this->user->contarRegistrosCarreras());
@@ -33,7 +33,9 @@ class User extends CI_Controller {
             $this->load->view('plantillas/header');
             $this->load->view('user/login');
         } else {
-            $data = array('detalles' => $this->user->detalles($pId));
+            $data = array('user_info'=>$user,
+                'detalles' => $this->user->detalles($pId)
+                    );
             $this->load->view('plantillas/header');
             $this->load->view('/user/details_user_view', $data);
         }
@@ -46,6 +48,7 @@ class User extends CI_Controller {
             $this->load->view('user/login');
         } else {
             $data = array(
+                'user_info'=>$user,
                 'detalles' => $this->user->detalles($pId),
                 'roles' => $this->user->obtenerRoles());
             $this->load->view('plantillas/header');
@@ -60,6 +63,7 @@ class User extends CI_Controller {
             $this->load->view('user/login');
         } else {
             $data = array(
+                'user_info'=>$user,
                 'roles' => $this->user->obtenerRoles()
             );
             $this->load->view('plantillas/header');
@@ -73,7 +77,10 @@ class User extends CI_Controller {
             $this->load->view('plantillas/header');
             $this->load->view('user/login');
         } else {
-            $data = array('detalles' => $this->user->detalles($pId));
+            $data = array(
+                'user_info'=>$user,
+                'detalles' => $this->user->detalles($pId)
+                    );
             $this->load->view('plantillas/header');
             $this->load->view('/user/details_user_delete', $data);
         }
@@ -109,6 +116,7 @@ class User extends CI_Controller {
         } else {
             //Obtiene todos los usuarios registrados
             $data = array(
+                'user_info'=>$user,
                 'usuarios' => $this->user->get_all()
             );
             $this->load->view('plantillas/header');
@@ -124,7 +132,7 @@ class User extends CI_Controller {
         if ($user) {
             $this->session->set_userdata('user', $user);
             $contador = array(
-                'user_info' => $user,
+                'user_info'=>$user,
                 'usuarios' => $this->user->contarRegistrosUsuarios(),
                 'estudiantes' => $this->user->contarRegistrosEstudiantes(),
                 'carreras' => $this->user->contarRegistrosCarreras()
@@ -167,10 +175,15 @@ class User extends CI_Controller {
             $nombre = $this->input->post('nombre');
             $nombreUsuario = $this->input->post('nombreusuario');
             $password = $this->input->post('contrasenna');
+            $verificaPassword = $this->input->post('verificarcontrasenna');
             $contrasenna = md5($password);
             $cmbRol = $this->input->post('roles');
-            $this->user->insert_user($nombre, $cedula, $nombreUsuario, $contrasenna, $cmbRol);
-            redirect("/user/obtenerUsers", "refresh");
+            if ($password === $verificaPassword) {
+                $this->user->insert_user($nombre, $cedula, $nombreUsuario, $contrasenna, $cmbRol);
+                redirect("/user/obtenerUsers", "refresh");
+            } else {
+                redirect("/user/detallesInsertar");
+            }
         }
     }
 
@@ -180,7 +193,8 @@ class User extends CI_Controller {
             $this->load->view('plantillas/header');
             $this->load->view('user/login');
         } else {
-            $contador = array(
+            $data = array(
+                'user_info'=>$user,
                 'usuarios' => $this->user->contarRegistrosUsuarios(),
                 'estudiantes' => $this->user->contarRegistrosEstudiantes(),
                 'carreras' => $this->user->contarRegistrosCarreras());
@@ -189,7 +203,7 @@ class User extends CI_Controller {
             if (!$user) {
                 redirect('user/authenticate');
             } else {
-                $this->load->view('user/dashboard', $contador);
+                $this->load->view('user/dashboard', $data);
             }
         }
     }
