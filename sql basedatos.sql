@@ -77,6 +77,7 @@ create table comentarios(
 	comentario varchar (50) not null,
 FOREIGN KEY (estudiante_fk) REFERENCES estudiante(cedula) ON UPDATE CASCADE ON DELETE CASCADE
 );
+USE Universidad;
 SELECT*FROM comentarios;
 INSERT INTO comentarios(estudiante_fk,nombre_profesor,fecha,comentario)VALUES('206910083','Ignacio','24/12/2014','Comentario realizado por el profesor 2');
 DROP TABLE comentarios;

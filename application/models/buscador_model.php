@@ -6,6 +6,7 @@ class Buscador_model extends CI_Model {
         parent::__construct();
     }
 
+    //Obtenemos los resultados de la busqueda
     function like($pFiltro, $pTipoBusqueda) {
         if ($pTipoBusqueda === 'habilidades') {
              // Genera: SELECT * FROM proyectos LIKE tecnologias_fk = '%$pFiltro%'
@@ -18,6 +19,7 @@ class Buscador_model extends CI_Model {
         }
     }
 
+    //Obtenemos todos los registros de los estudiantes en la base de datos
     function obtenerEstudiante($pCedula) {
         $this->db->where("cedula", $pCedula);
         $query = $this->db->get('estudiante');
@@ -28,6 +30,7 @@ class Buscador_model extends CI_Model {
         }
     }
 
+    //Obtenemos todos los comentarios realizados a un estudiante en especifico
     function obtenerComentarios($pCedula) {
         $this->db->where("estudiante_fk", $pCedula);
         $query = $this->db->get('comentarios');
@@ -38,6 +41,7 @@ class Buscador_model extends CI_Model {
         }
     }
 
+    //Obtenemos todos los proyectos asociados a un estudiante en especifico
     function obtenerProyectos($pCedula) {
         $this->db->where("estudiante_fk", $pCedula);
         $query = $this->db->get('proyectos');
